@@ -82,29 +82,29 @@ function App() {
 			scrollTrigger: {
 				trigger: ".simon-gauzy",
 				start: "center bottom",
-				toggleActions: "play none none none",
-				immediateRender: false,
+				toggleActions: "play none none reverse",
 			},
 		});
 
-		tlLeft.to(".left", {
-			x: -200,
-			duration: 0.5,
-		});
-
-		tlLeft.to(".left", {
-			rotateY: -50,
-			transformStyle: "preserve-3d",
-			zIndex: 20,
-			duration: 0.5,
-		});
-
-		tlLeft.to(".left", {
-			rotateY: 0,
-			x: 0,
-			height: "100%",
-			duration: 0.5,
-		});
+		//Yo complete na hudakheri samma aru animation nahune
+		tlLeft.fromTo(
+			".left",
+			{
+				x: -250,
+				rotateY: -50,
+				visibility: "hidden",
+			},
+			{
+				rotateY: 0,
+				x: 0,
+				zIndex: 20,
+				duration: 0.4,
+				transformStyle: "preserve-3d",
+				height: "100%",
+				visibility: "visible",
+				immediateRender: false,
+			},
+		);
 	}, []);
 
 	return (

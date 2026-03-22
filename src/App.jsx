@@ -62,11 +62,86 @@ function App() {
 		});
 		tl.to(".left", { x: -250, rotate: -3, visibility: "visible" });
 		tl.to(".right", { x: 250, rotate: 3, visibility: "visible" }, "<");
+
+		//Xu Xin section animation
+		gsap.to(".hero", {
+			backgroundColor: "red",
+			scrollTrigger: {
+				trigger: ".hero",
+				start: "center top",
+				toggleActions: "play none none reverse",
+			},
+		});
+		gsap.to(".xu-xin", {
+			backgroundColor: "red",
+			scrollTrigger: {
+				trigger: ".hero",
+				start: "center top",
+				toggleActions: "play none none reverse",
+			},
+		});
+		gsap.to(".simon-gauzy", {
+			backgroundColor: "red",
+			scrollTrigger: {
+				trigger: ".hero",
+				start: "center top",
+				toggleActions: "play none none reverse",
+			},
+		});
+
+		//Simon Gauzy section animation
+		gsap.fromTo(
+			".simon-gauzy",
+			{ backgroundColor: "red" },
+			{
+				backgroundColor: "green",
+				scrollTrigger: {
+					trigger: ".simon-gauzy",
+					start: "center bottom",
+					toggleActions: "play none none reverse",
+				},
+			},
+		);
+		gsap.fromTo(
+			".xu-xin",
+			{ backgroundColor: "red" },
+			{
+				backgroundColor: "green",
+				scrollTrigger: {
+					trigger: ".simon-gauzy",
+					start: "center bottom",
+					toggleActions: "play none none reverse",
+				},
+			},
+		);
+
+		const tlLeft = gsap.timeline({
+			scrollTrigger: {
+				trigger: ".simon-gauzy",
+				start: "center bottom",
+			},
+		});
+
+		tlLeft.to(".left", {
+			x: -200,
+		});
+
+		tlLeft.to(".left", {
+			rotateY: -50,
+			transformStyle: "preserve-3d",
+			zIndex: 20,
+		});
+
+		tlLeft.to(".left", {
+			rotateY: 0,
+			x: 0,
+			height: "100%",
+		});
 	}, []);
 
 	return (
 		<>
-			<div className="img-container w-full fixed h-100 top-[50%] translate-y-[-50%] mt-10">
+			<div className="img-container w-full fixed h-100 top-[50%] translate-y-[-50%] mt-10 perspective-midrange">
 				<div className="img-card left rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] bg-lime-600 overflow-hidden invisible">
 					<img
 						src="images/simon-gauzy.avif"
@@ -96,13 +171,17 @@ function App() {
 
 				<div className="text text-4xl">Play & Enjoy</div>
 			</section>
-			<section className="xuxin h-dvh flex items-center">
-				<div className="text-5xl font-bold w-[50%] text-center ">XU XIN</div>
-				<div className="text-5xl font-bold w-[50%] text-center ">
-					CLOUD WALKER
+			<section className="xu-xin h-dvh flex items-center">
+				<div className="text-container text-5xl font-bold w-full text-center text-white">
+					XU XIN
+				</div>
+				{/* Same width as the img container */}
+				<div className="w-75"></div>
+				<div className="text-5xl font-bold w-full text-center text-white">
+					XUPERMAN
 				</div>
 			</section>
-			<section className="simon-gauzy"></section>
+			<section className="simon-gauzy h-dvh"></section>
 			<section className="koki-niwa"></section>
 		</>
 	);

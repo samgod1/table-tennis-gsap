@@ -7,106 +7,68 @@ gsap.registerPlugin(SplitText);
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
+	history.scrollRestoration = "manual";
+
 	useGSAP(() => {
 		const split = SplitText.create(".hero-text", { type: "chars, words" });
 		gsap.set(split.words[1], {
 			color: "red",
 		});
-		const tl = gsap.timeline({
+		gsap.set(document.body, { overflow: "hidden" });
+
+		const introTl = gsap.timeline({
 			onComplete: () => {
-				gsap.fromTo(
-					".right",
-					{
-						x: 250,
-						rotate: 3,
-					},
-					{
-						x: 0,
-						rotate: 0,
-						scrollTrigger: {
-							trigger: ".hero",
-							scrub: 1,
-							start: "top top",
-							end: "bottom top",
-						},
-					},
-				);
-				gsap.fromTo(
-					".left",
-					{ x: -250, rotate: -3 },
-					{
-						x: 0,
-						rotate: 0,
-						scrollTrigger: {
-							trigger: ".hero",
-							scrub: 1,
-							start: "top top",
-							end: "bottom top",
-						},
-					},
-				);
+				gsap.set(document.body, { overflow: "" });
+				ScrollTrigger.refresh();
 			},
 		});
-		tl.from(split.chars, {
-			y: 100,
-			duration: 0.3,
-			stagger: 0.025,
-			ease: "none",
-			autoAlpha: 0,
-		});
-		tl.from(".middle", {
-			y: 300,
-			autoAlpha: 0,
-			duration: 0.5,
-			ease: "none",
-		});
-		tl.to(".left", { x: -250, rotate: -3, visibility: "visible" });
-		tl.to(".right", { x: 250, rotate: 3, visibility: "visible" }, "<");
 
-		//Xu Xin section animation
-		gsap.to(".hero", {
-			backgroundColor: "red",
+		introTl
+			.from(split.chars, {
+				y: 100,
+				duration: 0.3,
+				stagger: 0.025,
+				ease: "none",
+				autoAlpha: 0,
+			})
+			.from(".middle", {
+				y: 300,
+				autoAlpha: 0,
+				duration: 0.5,
+				ease: "none",
+			})
+			.to(".left", { x: -250, rotate: -3, visibility: "visible" })
+			.to(".right", { x: 250, rotate: 3, visibility: "visible" }, "<");
+
+		//scroll image collapse animation
+		gsap.to([".left", ".right"], {
+			x: 0,
+			rotate: 0,
+			immediateRender: false,
 			scrollTrigger: {
 				trigger: ".hero",
-				start: "center top",
-				toggleActions: "play none none reverse",
+				start: "top top",
+				end: "bottom top",
+				scrub: 1,
 			},
 		});
-		gsap.to(".xu-xin", {
+
+		//color animation
+		gsap.to([".hero", ".xu-xin", ".simon-gauzy", ".koki-niwa"], {
 			backgroundColor: "red",
 			scrollTrigger: {
-				trigger: ".hero",
-				start: "center top",
-				toggleActions: "play none none reverse",
-			},
-		});
-		gsap.to(".simon-gauzy", {
-			backgroundColor: "red",
-			scrollTrigger: {
-				trigger: ".hero",
-				start: "center top",
+				trigger: ".xu-xin",
+				start: "center bottom",
 				toggleActions: "play none none reverse",
 			},
 		});
 
-		//Simon Gauzy section animation
 		gsap.fromTo(
-			".simon-gauzy",
+			[".hero", ".xu-xin", ".simon-gauzy", ".koki-niwa"],
 			{ backgroundColor: "red" },
 			{
 				backgroundColor: "green",
-				scrollTrigger: {
-					trigger: ".simon-gauzy",
-					start: "center bottom",
-					toggleActions: "play none none reverse",
-				},
-			},
-		);
-		gsap.fromTo(
-			".xu-xin",
-			{ backgroundColor: "red" },
-			{
-				backgroundColor: "green",
+				immediateRender: false,
 				scrollTrigger: {
 					trigger: ".simon-gauzy",
 					start: "center bottom",
@@ -115,27 +77,33 @@ function App() {
 			},
 		);
 
+		//Card Popping animation
 		const tlLeft = gsap.timeline({
 			scrollTrigger: {
 				trigger: ".simon-gauzy",
 				start: "center bottom",
+				toggleActions: "play none none none",
+				immediateRender: false,
 			},
 		});
 
 		tlLeft.to(".left", {
 			x: -200,
+			duration: 0.5,
 		});
 
 		tlLeft.to(".left", {
 			rotateY: -50,
 			transformStyle: "preserve-3d",
 			zIndex: 20,
+			duration: 0.5,
 		});
 
 		tlLeft.to(".left", {
 			rotateY: 0,
 			x: 0,
 			height: "100%",
+			duration: 0.5,
 		});
 	}, []);
 

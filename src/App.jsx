@@ -1,15 +1,22 @@
 import gsap from "gsap";
 import { SplitText, ScrollTrigger } from "gsap/all";
 import { useGSAP } from "@gsap/react";
+import { useLenis } from "lenis/react";
+import ReactLenis from "lenis/react";
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(SplitText);
 gsap.registerPlugin(ScrollTrigger);
 
-function App() {
+function MainContent() {
 	history.scrollRestoration = "manual";
+	const lenis = useLenis();
 
 	useGSAP(() => {
+		//This is for the scroll lock to work
+		if (!lenis) return;
+		lenis?.stop();
+
 		const split = SplitText.create(".hero-text", { type: "chars, words" });
 		gsap.set(split.words[1], {
 			color: "red",
@@ -19,6 +26,7 @@ function App() {
 		const introTl = gsap.timeline({
 			onComplete: () => {
 				gsap.set(document.body, { overflow: "" });
+				lenis?.start();
 				ScrollTrigger.refresh();
 			},
 		});
@@ -39,19 +47,6 @@ function App() {
 			})
 			.to(".left", { x: -250, rotate: -3, visibility: "visible" })
 			.to(".right", { x: 250, rotate: 3, visibility: "visible" }, "<");
-
-		//scroll image collapse animation
-		gsap.to([".left", ".right"], {
-			x: 0,
-			rotate: 0,
-			immediateRender: false,
-			scrollTrigger: {
-				trigger: ".hero",
-				start: "top top",
-				end: "bottom top",
-				scrub: 1,
-			},
-		});
 
 		//color animation
 		gsap.to([".hero", ".xu-xin", ".simon-gauzy", ".koki-niwa"], {
@@ -77,35 +72,100 @@ function App() {
 			},
 		);
 
-		//Card Popping animation
-		const tlLeft = gsap.timeline({
+		gsap.fromTo(
+			[".hero", ".xu-xin", ".simon-gauzy", ".koki-niwa"],
+			{ backgroundColor: "green" },
+			{
+				backgroundColor: "blue",
+				immediateRender: false,
+				scrollTrigger: {
+					trigger: ".koki-niwa",
+					start: "center bottom",
+					toggleActions: "play none none reverse",
+				},
+			},
+		);
+
+		//scroll image collapse animation
+		gsap.to([".left", ".right"], {
+			x: 0,
+			rotate: 0,
+			immediateRender: false,
 			scrollTrigger: {
-				trigger: ".simon-gauzy",
-				start: "center bottom",
-				toggleActions: "play none none reverse",
+				trigger: ".hero",
+				start: "top top",
+				end: "bottom top",
+				scrub: 1,
 			},
 		});
 
-		//Yo complete na hudakheri samma aru animation nahune
-		tlLeft.fromTo(
+		//Card animaitions
+		gsap.fromTo(
 			".left",
 			{
 				x: -250,
 				rotateY: -50,
-				visibility: "hidden",
 			},
 			{
+				zIndex: 20,
 				rotateY: 0,
 				x: 0,
-				zIndex: 20,
-				duration: 0.4,
+				duration: 0.2,
 				transformStyle: "preserve-3d",
 				height: "100%",
-				visibility: "visible",
 				immediateRender: false,
+				visibility: "visible",
+				autoAlpha: 1,
+				overwrite: "auto",
+				scrollTrigger: {
+					trigger: ".simon-gauzy",
+					start: "center bottom",
+					toggleActions: "play none none reverse",
+					onLeaveBack: () => {
+						gsap.set(".left", {
+							x: 0,
+							rotateY: 0,
+							height: "80%",
+							zIndex: 5,
+						});
+					},
+				},
 			},
 		);
-	}, []);
+
+		gsap.fromTo(
+			".right",
+			{
+				x: 250,
+				rotateY: 50,
+			},
+			{
+				x: 0,
+				rotateY: 0,
+				zIndex: 30,
+				duration: 0.2,
+				transformStyle: "preserve-3d",
+				height: "100%",
+				immediateRender: false,
+				visibility: "visible",
+				autoAlpha: 1,
+				overwrite: "auto",
+				scrollTrigger: {
+					trigger: ".koki-niwa",
+					start: "center bottom",
+					toggleActions: "play none none reverse",
+					onLeaveBack: () => {
+						gsap.set(".left", {
+							x: 0,
+							rotateY: 0,
+							height: "80%",
+							zIndex: 5,
+						});
+					},
+				},
+			},
+		);
+	}, [lenis]);
 
 	return (
 		<>
@@ -149,10 +209,27 @@ function App() {
 					XUPERMAN
 				</div>
 			</section>
-			<section className="simon-gauzy h-dvh"></section>
-			<section className="koki-niwa"></section>
+			<section className="simon-gauzy h-dvh flex items-center">
+				<div className="text-container text-5xl font-bold w-full text-center text-white">
+					XU XIN
+				</div>
+				{/* Same width as the img container */}
+				<div className="w-75"></div>
+				<div className="text-5xl font-bold w-full text-center text-white">
+					XUPERMAN
+				</div>
+			</section>
+			<section className="koki-niwa h-dvh"></section>
 		</>
 	);
 }
+
+const App = () => {
+	return (
+		<ReactLenis root>
+			<MainContent />
+		</ReactLenis>
+	);
+};
 
 export default App;

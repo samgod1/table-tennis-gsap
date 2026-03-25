@@ -23,6 +23,10 @@ function MainContent() {
 		});
 		gsap.set(document.body, { overflow: "hidden" });
 
+		gsap.set([".left", ".right"], {
+			autoAlpha: 0,
+		});
+
 		const introTl = gsap.timeline({
 			onComplete: () => {
 				gsap.set(document.body, { overflow: "" });
@@ -45,8 +49,8 @@ function MainContent() {
 				duration: 0.5,
 				ease: "none",
 			})
-			.to(".left", { x: -250, rotate: -3, visibility: "visible" })
-			.to(".right", { x: 250, rotate: 3, visibility: "visible" }, "<");
+			.to(".left", { x: -250, rotate: -3, autoAlpha: 1 })
+			.to(".right", { x: 250, rotate: 3, autoAlpha: 1 }, "<");
 
 		//color animation
 		gsap.to([".hero", ".xu-xin", ".simon-gauzy", ".koki-niwa"], {
@@ -68,6 +72,7 @@ function MainContent() {
 					trigger: ".simon-gauzy",
 					start: "center bottom",
 					toggleActions: "play none none reverse",
+					preventOverlaps: true,
 				},
 			},
 		);
@@ -95,16 +100,17 @@ function MainContent() {
 				trigger: ".hero",
 				start: "top top",
 				end: "bottom top",
-				scrub: 1,
+				scrub: true,
 			},
 		});
 
 		//Card animaitions
 		gsap.fromTo(
-			".left",
+			".left-pop",
 			{
 				x: -250,
 				rotateY: -50,
+				visibility: "hidden",
 			},
 			{
 				zIndex: 20,
@@ -115,7 +121,6 @@ function MainContent() {
 				height: "100%",
 				immediateRender: false,
 				visibility: "visible",
-				autoAlpha: 1,
 				overwrite: "auto",
 				scrollTrigger: {
 					trigger: ".simon-gauzy",
@@ -134,7 +139,7 @@ function MainContent() {
 		);
 
 		gsap.fromTo(
-			".right",
+			".right-pop",
 			{
 				x: 250,
 				rotateY: 50,
@@ -147,15 +152,13 @@ function MainContent() {
 				transformStyle: "preserve-3d",
 				height: "100%",
 				immediateRender: false,
-				visibility: "visible",
-				autoAlpha: 1,
 				overwrite: "auto",
 				scrollTrigger: {
 					trigger: ".koki-niwa",
 					start: "center bottom",
 					toggleActions: "play none none reverse",
 					onLeaveBack: () => {
-						gsap.set(".left", {
+						gsap.set(".right", {
 							x: 0,
 							rotateY: 0,
 							height: "80%",
@@ -170,21 +173,37 @@ function MainContent() {
 	return (
 		<>
 			<div className="img-container w-full fixed h-100 top-[50%] translate-y-[-50%] mt-10 perspective-midrange">
-				<div className="img-card left rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] bg-lime-600 overflow-hidden invisible">
+				<div className="img-card left rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden">
 					<img
 						src="images/simon-gauzy.avif"
 						alt="simon-gauzy"
 						className="w-full h-full object-cover"
 					/>
 				</div>
-				<div className="img-card middle rounded-3xl w-75 h-full absolute z-10 left-[50%] bottom-0 translate-x-[-50%] bg-lime-600 overflow-hidden">
+				<div className="img-card middle rounded-3xl w-75 h-full absolute z-10 left-[50%] bottom-0 translate-x-[-50%] overflow-hidden">
 					<img
 						src="images/xuxin.jpg"
 						alt="xuxin"
 						className="w-full h-full object-cover"
 					/>
 				</div>
-				<div className="img-card right rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] bg-lime-600 overflow-hidden invisible">
+				<div className="img-card right rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden ">
+					<img
+						src="images/koki-niwa.jpg"
+						alt="koki-niwa"
+						className="w-full h-full object-cover"
+					/>
+				</div>
+
+				{/* Popping img card */}
+				<div className="img-card left-pop rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden invisible">
+					<img
+						src="images/simon-gauzy.avif"
+						alt="simon-gauzy"
+						className="w-full h-full object-cover"
+					/>
+				</div>
+				<div className="img-card right-pop rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden invisible">
 					<img
 						src="images/koki-niwa.jpg"
 						alt="koki-niwa"
@@ -192,6 +211,8 @@ function MainContent() {
 					/>
 				</div>
 			</div>
+
+			{/* Hero section */}
 			<section className="hero h-dvh p-10 flex flex-col justify-between">
 				<div className="hero-text text-9xl text-center anton-regular">
 					TABLE TENNIS
@@ -199,27 +220,43 @@ function MainContent() {
 
 				<div className="text text-4xl">Play & Enjoy</div>
 			</section>
-			<section className="xu-xin h-dvh flex items-center">
-				<div className="text-container text-5xl font-bold w-full text-center text-white">
+
+			{/* Xuxin section */}
+			<section className="xu-xin h-dvh flex items-center w-full">
+				<div className="text-container text-5xl font-bold flex-1 text-center text-white">
 					XU XIN
 				</div>
 				{/* Same width as the img container */}
-				<div className="w-75"></div>
-				<div className="text-5xl font-bold w-full text-center text-white">
+				<div className="w-75 h-full"></div>
+				<div className="text-5xl font-bold flex-1 text-center text-white">
 					XUPERMAN
 				</div>
 			</section>
+
+			{/* Simon Gauzy section */}
 			<section className="simon-gauzy h-dvh flex items-center">
-				<div className="text-container text-5xl font-bold w-full text-center text-white">
-					XU XIN
+				<div className="text-container text-5xl font-bold flex-1 text-center text-white">
+					Simon Gauzy
 				</div>
 				{/* Same width as the img container */}
-				<div className="w-75"></div>
-				<div className="text-5xl font-bold w-full text-center text-white">
-					XUPERMAN
+				<div className="w-75 h-full"></div>
+				<div className="text-5xl font-bold flex-1 text-center text-white">
+					The French Legend
 				</div>
 			</section>
-			<section className="koki-niwa h-dvh"></section>
+
+			{/* Koki Niwa section */}
+			<section className="koki-niwa h-dvh flex items-center">
+				<div className="text-container text-5xl font-bold flex-1 text-center text-white">
+					Koki Niwa
+				</div>
+				{/* Same width as the img container */}
+				<div className="w-75 h-full"></div>
+				<div className="text-5xl font-bold flex-1 text-center text-white">
+					The French Legend
+				</div>
+			</section>
+			<section className="hall-of-fame"></section>
 		</>
 	);
 }

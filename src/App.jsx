@@ -189,6 +189,7 @@ function MainContent() {
 
 		cards.forEach((card, i) => {
 			if (i > 0) {
+				gsap.set(card, { zIndex: "60" + i });
 				tl.to(
 					card,
 					{
@@ -200,6 +201,24 @@ function MainContent() {
 				);
 			}
 		});
+
+		gsap.fromTo(
+			".hof-card",
+			{
+				autoAlpha: 0,
+				rotateY: 15,
+			},
+			{
+				autoAlpha: 1,
+				rotateY: 0,
+				duration: 0.2,
+				scrollTrigger: {
+					trigger: ".hall-of-fame",
+					start: "center bottom",
+					toggleActions: "play none none reverse",
+				},
+			},
+		);
 	}, [lenis]);
 
 	const imagesForHof = ["abc.jpg", "abc.jpg", "abc.jpg", "abc.jpg", "abc.jpg"];
@@ -245,7 +264,7 @@ function MainContent() {
 					/>
 				</div>
 			</div>
-			<div className="hof-img-container fixed top-[50%] translate-y-[-50%] h-100 mt-10 w-full">
+			<div className="hof-img-container fixed top-[50%] translate-y-[-50%] h-100 mt-10 w-full perspective-midrange">
 				{/* Hall of fame cards */}
 				{imagesForHof.map((image) => {
 					return (
@@ -308,7 +327,13 @@ function MainContent() {
 			</section>
 
 			{/* Hall of fame section */}
-			<section className="hall-of-fame h-dvh"></section>
+			<section className="hall-of-fame h-dvh flex items-center">
+				<div className="flex-1 text-center text-5xl font-bold">
+					ACHIEVEMENTS
+				</div>
+				<div className="w-75"></div>
+				<div className="flex-1"></div>
+			</section>
 		</>
 	);
 }

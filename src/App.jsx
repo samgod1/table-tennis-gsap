@@ -153,6 +153,7 @@ function MainContent() {
 				height: "100%",
 				immediateRender: false,
 				overwrite: "auto",
+				visibility: "visible",
 				scrollTrigger: {
 					trigger: ".koki-niwa",
 					start: "center bottom",
@@ -169,6 +170,22 @@ function MainContent() {
 			},
 		);
 	}, [lenis]);
+
+	// const imagesForHof = ["abc.jpg", "abc.jpg", "abc.jpg", "abc.jpg", "abc.jpg"];
+
+	// const hofTl = gsap.timeline({
+	// 	scrollTrigger: {
+	// 		trigger: ".hall-of-fame",
+	// 		start: "top top",
+	// 		end: "+=1000px",
+	// 		scrub: 1,
+	// 		pin: true,
+	// 	},
+	// });
+
+	// hofTl.to(".hof-card", {
+	// 	x: 0,
+	// });
 
 	return (
 		<>
@@ -211,6 +228,25 @@ function MainContent() {
 					/>
 				</div>
 			</div>
+			{/* <div className="hof-img-container fixed top-[50%] translate-y-[-50%] h-100 mt-10 w-full">
+				Hall of fame cards
+				{imagesForHof.map((image, i) => {
+					return (
+						<div
+							className={`img-card hof-card rounded-3xl w-75 h-full absolute z-40 left-[50%] top-[50%] overflow-hidden`}
+							style={{
+								transform: `translate(-50%, -50%) translateX(${i * 350}px)`,
+							}}
+						>
+							<img
+								src="images/xuxin.jpg"
+								alt="hof1"
+								className="w-full h-full object-cover"
+							/>
+						</div>
+					);
+				})}
+			</div> */}
 
 			{/* Hero section */}
 			<section className="hero h-dvh p-10 flex flex-col justify-between">
@@ -228,35 +264,36 @@ function MainContent() {
 				</div>
 				{/* Same width as the img container */}
 				<div className="w-75 h-full"></div>
-				<div className="text-5xl font-bold flex-1 text-center text-white">
-					XUPERMAN
-				</div>
+				<div className="text-5xl font-bold flex-1 text-center text-white"></div>
+				XUPERMAN
 			</section>
 
 			{/* Simon Gauzy section */}
 			<section className="simon-gauzy h-dvh flex items-center">
 				<div className="text-container text-5xl font-bold flex-1 text-center text-white">
-					Simon Gauzy
+					SIMON GAUZY
 				</div>
 				{/* Same width as the img container */}
 				<div className="w-75 h-full"></div>
 				<div className="text-5xl font-bold flex-1 text-center text-white">
-					The French Legend
+					MAGICIAN
 				</div>
 			</section>
 
 			{/* Koki Niwa section */}
 			<section className="koki-niwa h-dvh flex items-center">
 				<div className="text-container text-5xl font-bold flex-1 text-center text-white">
-					Koki Niwa
+					KOKI NIWA
 				</div>
 				{/* Same width as the img container */}
 				<div className="w-75 h-full"></div>
 				<div className="text-5xl font-bold flex-1 text-center text-white">
-					The French Legend
+					GENIUS
 				</div>
 			</section>
-			<section className="hall-of-fame"></section>
+
+			{/* Hall of fame section
+			<section className="hall-of-fame h-dvh"></section> */}
 		</>
 	);
 }

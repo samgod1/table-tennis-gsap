@@ -169,27 +169,44 @@ function MainContent() {
 				},
 			},
 		);
+
+		// Hall of fame horizontal scroll animation
+		const cards = gsap.utils.toArray(".hof-card");
+		gsap.set(cards, {
+			x: (i) => i * 350,
+		});
+
+		const tl = gsap.timeline({
+			scrollTrigger: {
+				trigger: ".hall-of-fame",
+				start: "top top",
+				end: "+=2000",
+				scrub: true,
+				pin: true,
+				anticipatePin: 1,
+			},
+		});
+
+		cards.forEach((card, i) => {
+			if (i > 0) {
+				tl.to(
+					card,
+					{
+						x: 0,
+						ease: "none",
+						duration: i,
+					},
+					0,
+				);
+			}
+		});
 	}, [lenis]);
 
-	// const imagesForHof = ["abc.jpg", "abc.jpg", "abc.jpg", "abc.jpg", "abc.jpg"];
-
-	// const hofTl = gsap.timeline({
-	// 	scrollTrigger: {
-	// 		trigger: ".hall-of-fame",
-	// 		start: "top top",
-	// 		end: "+=1000px",
-	// 		scrub: 1,
-	// 		pin: true,
-	// 	},
-	// });
-
-	// hofTl.to(".hof-card", {
-	// 	x: 0,
-	// });
+	const imagesForHof = ["abc.jpg", "abc.jpg", "abc.jpg", "abc.jpg", "abc.jpg"];
 
 	return (
 		<>
-			<div className="img-container w-full fixed h-100 top-[50%] translate-y-[-50%] mt-10 perspective-midrange">
+			<div className="img-container w-full fixed h-100 top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] mt-10 perspective-midrange">
 				<div className="img-card left rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden">
 					<img
 						src="images/simon-gauzy.avif"
@@ -228,15 +245,12 @@ function MainContent() {
 					/>
 				</div>
 			</div>
-			{/* <div className="hof-img-container fixed top-[50%] translate-y-[-50%] h-100 mt-10 w-full">
-				Hall of fame cards
-				{imagesForHof.map((image, i) => {
+			<div className="hof-img-container fixed top-[50%] translate-y-[-50%] h-100 mt-10 w-full">
+				{/* Hall of fame cards */}
+				{imagesForHof.map((image) => {
 					return (
 						<div
-							className={`img-card hof-card rounded-3xl w-75 h-full absolute z-40 left-[50%] top-[50%] overflow-hidden`}
-							style={{
-								transform: `translate(-50%, -50%) translateX(${i * 350}px)`,
-							}}
+							className={`img-card hof-card rounded-3xl w-75 h-full absolute z-40 left-[50%] translate-x-[-50%] overflow-hidden`}
 						>
 							<img
 								src="images/xuxin.jpg"
@@ -246,7 +260,7 @@ function MainContent() {
 						</div>
 					);
 				})}
-			</div> */}
+			</div>
 
 			{/* Hero section */}
 			<section className="hero h-dvh p-10 flex flex-col justify-between">
@@ -293,8 +307,8 @@ function MainContent() {
 				</div>
 			</section>
 
-			{/* Hall of fame section
-			<section className="hall-of-fame h-dvh"></section> */}
+			{/* Hall of fame section */}
+			<section className="hall-of-fame h-dvh"></section>
 		</>
 	);
 }

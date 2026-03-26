@@ -264,8 +264,9 @@ function MainContent() {
 				</div>
 				{/* Same width as the img container */}
 				<div className="w-75 h-full"></div>
-				<div className="text-5xl font-bold flex-1 text-center text-white"></div>
-				XUPERMAN
+				<div className="text-5xl font-bold flex-1 text-center text-white">
+					XUPERMAN
+				</div>
 			</section>
 
 			{/* Simon Gauzy section */}

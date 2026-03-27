@@ -59,8 +59,8 @@ function MainContent() {
 				duration: 1,
 				ease: "power2.out",
 			})
-			.to(".left", { x: -250, rotate: -3, duration: 0.75, autoAlpha: 1 })
-			.to(".right", { x: 250, rotate: 3, duration: 0.75, autoAlpha: 1 }, "<");
+			.to(".left", { x: -250, rotate: -3, duration: 0.5, autoAlpha: 1 })
+			.to(".right", { x: 250, rotate: 3, duration: 0.5, autoAlpha: 1 }, "<");
 
 		//scroll image collapse animation
 		gsap.to([".left", ".right"], {
@@ -148,6 +148,48 @@ function MainContent() {
 				},
 			},
 		);
+
+		// Expading animation
+		const firstSectionTl = gsap.timeline({
+			scrollTrigger: {
+				trigger: ".xu-xin",
+				start: "top top",
+				end: "+=1000px",
+				pin: true,
+				scrub: true,
+				anticipatePin: 1,
+				immediateRender: false,
+			},
+		});
+
+		firstSectionTl.to(".img-container", {
+			height: "100%",
+		});
+
+		firstSectionTl.to(
+			".img-card",
+			{
+				width: "50%",
+				left: "0",
+				xPercent: 0,
+				borderRadius: 0,
+			},
+			"<",
+		);
+		firstSectionTl.to(".img-container", {
+			height: "400px",
+		});
+		firstSectionTl.to(
+			".img-card",
+			{
+				left: "50%",
+				width: "300px",
+				xPercent: -50,
+				borderRadius: "24px",
+			},
+			"<",
+		);
+
 		gsap.fromTo(
 			".second-pop",
 			{
@@ -299,21 +341,21 @@ function MainContent() {
 				</div>
 
 				{/* Popping img card */}
-				<div className="img-card first-pop rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden invisible">
+				<div className="img-card pop-card first-pop rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden invisible">
 					<img
 						src="images/china.jpg"
 						alt="simon-gauzy"
 						className="w-full h-full object-cover"
 					/>
 				</div>
-				<div className="img-card second-pop rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden invisible">
+				<div className="img-card pop-card second-pop rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden invisible">
 					<img
 						src="images/simon-gauzy.avif"
 						alt="simon-gauzy"
 						className="w-full h-full object-cover"
 					/>
 				</div>
-				<div className="img-card third-pop rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden invisible">
+				<div className="img-card pop-card third-pop rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden invisible">
 					<img
 						src="images/koki-niwa.jpg"
 						alt="koki-niwa"
@@ -340,7 +382,7 @@ function MainContent() {
 
 			{/* Hero section */}
 			<section className="hero h-dvh px-10 flex flex-col justify-between relative">
-				<div className="hero-text text-9xl text-center anton-regular absolute z-[-1] w-full top-[50%] translate-y-[-50%]">
+				<div className="hero-text text-9xl text-center anton-regular absolute left-0 z-[-1] w-full top-[50%] translate-y-[-50%]">
 					LEGENDARY PLAYERS
 				</div>
 				{/* 
@@ -348,19 +390,10 @@ function MainContent() {
 			</section>
 
 			{/* Xuxin section */}
-			<section className="xu-xin h-dvh flex items-center w-full">
-				<div className="text-container text-5xl font-bold flex-1 text-center text-white">
-					XU XIN
-				</div>
-				{/* Same width as the img container */}
-				<div className="w-75 h-full"></div>
-				<div className="text-5xl font-bold flex-1 text-center text-white">
-					XUPERMAN
-				</div>
-			</section>
+			<section className="xu-xin h-dvh flex items-center w-full"></section>
 
 			{/* Simon Gauzy section */}
-			<section className="simon-gauzy h-dvh flex items-center">
+			<section className="simon-gauzy h-dvh flex items-center bg-yellow-200">
 				<div className="text-container text-5xl font-bold flex-1 text-center text-white">
 					SIMON GAUZY
 				</div>

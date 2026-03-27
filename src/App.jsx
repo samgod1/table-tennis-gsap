@@ -17,10 +17,9 @@ function MainContent() {
 		if (!lenis) return;
 		lenis?.stop();
 
-		const split = SplitText.create(".hero-text", { type: "chars, words" });
-		gsap.set(split.words[1], {
-			color: "red",
-		});
+		const split = SplitText.create(".hero-text", { type: "words" });
+		const firstWord = SplitText.create(split.words[0], { type: "chars" });
+		const secondWord = SplitText.create(split.words[1], { type: "chars" });
 		gsap.set(document.body, { overflow: "hidden" });
 
 		gsap.set([".left", ".right"], {
@@ -36,12 +35,23 @@ function MainContent() {
 		});
 
 		introTl
-			.from(split.chars, {
+			.from(firstWord.chars, {
 				y: 100,
-				duration: 0.3,
 				stagger: 0.075,
 				ease: "power1.out",
 				autoAlpha: 0,
+				delay: 0.5,
+			})
+			.from(secondWord.chars, {
+				y: 100,
+				stagger: 0.075,
+				ease: "power1.out",
+				autoAlpha: 0,
+			})
+
+			.to(".hero-text", {
+				top: "40px",
+				transform: "translateY(0)",
 			})
 			.from(".middle", {
 				y: 300,
@@ -311,7 +321,7 @@ function MainContent() {
 					/>
 				</div>
 			</div>
-			<div className="hof-img-container fixed top-[50%] translate-y-[-50%] h-100 mt-10 w-full perspective-midrange">
+			<div className="hof-img-container fixed top-[50%] translate-y-[-50%] h-100 w-full perspective-midrange">
 				{/* Hall of fame cards */}
 				{imagesForHof.map((image) => {
 					return (
@@ -329,12 +339,12 @@ function MainContent() {
 			</div>
 
 			{/* Hero section */}
-			<section className="hero h-dvh p-10 flex flex-col justify-between">
-				<div className="hero-text text-9xl text-center anton-regular z-[-1]">
+			<section className="hero h-dvh px-10 flex flex-col justify-between relative">
+				<div className="hero-text text-9xl text-center anton-regular absolute z-[-1] w-full top-[50%] translate-y-[-50%]">
 					LEGENDARY PLAYERS
 				</div>
-
-				<div className="text text-4xl">Play & Enjoy</div>
+				{/* 
+				<div className="text text-4xl">Best of the best</div> */}
 			</section>
 
 			{/* Xuxin section */}

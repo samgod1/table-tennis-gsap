@@ -39,57 +39,18 @@ function MainContent() {
 			.from(split.chars, {
 				y: 100,
 				duration: 0.3,
-				stagger: 0.025,
-				ease: "none",
+				stagger: 0.075,
+				ease: "power1.out",
 				autoAlpha: 0,
 			})
 			.from(".middle", {
 				y: 300,
 				autoAlpha: 0,
-				duration: 0.5,
-				ease: "none",
+				duration: 1,
+				ease: "power2.out",
 			})
-			.to(".left", { x: -250, rotate: -3, autoAlpha: 1 })
-			.to(".right", { x: 250, rotate: 3, autoAlpha: 1 }, "<");
-
-		//color animation
-		gsap.to([".hero", ".xu-xin", ".simon-gauzy", ".koki-niwa"], {
-			backgroundColor: "red",
-			scrollTrigger: {
-				trigger: ".xu-xin",
-				start: "center bottom",
-				toggleActions: "play none none reverse",
-			},
-		});
-
-		gsap.fromTo(
-			[".hero", ".xu-xin", ".simon-gauzy", ".koki-niwa"],
-			{ backgroundColor: "red" },
-			{
-				backgroundColor: "green",
-				immediateRender: false,
-				scrollTrigger: {
-					trigger: ".simon-gauzy",
-					start: "center bottom",
-					toggleActions: "play none none reverse",
-					preventOverlaps: true,
-				},
-			},
-		);
-
-		gsap.fromTo(
-			[".hero", ".xu-xin", ".simon-gauzy", ".koki-niwa"],
-			{ backgroundColor: "green" },
-			{
-				backgroundColor: "blue",
-				immediateRender: false,
-				scrollTrigger: {
-					trigger: ".koki-niwa",
-					start: "center bottom",
-					toggleActions: "play none none reverse",
-				},
-			},
-		);
+			.to(".left", { x: -250, rotate: -3, duration: 0.75, autoAlpha: 1 })
+			.to(".right", { x: 250, rotate: 3, duration: 0.75, autoAlpha: 1 }, "<");
 
 		//scroll image collapse animation
 		gsap.to([".left", ".right"], {
@@ -99,14 +60,86 @@ function MainContent() {
 			scrollTrigger: {
 				trigger: ".hero",
 				start: "top top",
-				end: "bottom top",
-				scrub: true,
+				end: "center top",
+				scrub: 1.5,
 			},
 		});
 
-		//Card animaitions
+		//color animation
+		// gsap.to([".hero", ".xu-xin", ".simon-gauzy", ".koki-niwa"], {
+		// 	backgroundColor: "red",
+		// 	scrollTrigger: {
+		// 		trigger: ".xu-xin",
+		// 		start: "center bottom",
+		// 		toggleActions: "play none none reverse",
+		// 	},
+		// });
+
+		// gsap.fromTo(
+		// 	[".hero", ".xu-xin", ".simon-gauzy", ".koki-niwa"],
+		// 	{ backgroundColor: "red" },
+		// 	{
+		// 		backgroundColor: "green",
+		// 		immediateRender: false,
+		// 		scrollTrigger: {
+		// 			trigger: ".simon-gauzy",
+		// 			start: "center bottom",
+		// 			toggleActions: "play none none reverse",
+		// 			preventOverlaps: true,
+		// 		},
+		// 	},
+		// );
+
+		// gsap.fromTo(
+		// 	[".hero", ".xu-xin", ".simon-gauzy", ".koki-niwa"],
+		// 	{ backgroundColor: "green" },
+		// 	{
+		// 		backgroundColor: "blue",
+		// 		immediateRender: false,
+		// 		scrollTrigger: {
+		// 			trigger: ".koki-niwa",
+		// 			start: "center bottom",
+		// 			toggleActions: "play none none reverse",
+		// 		},
+		// 	},
+		// );
+
+		//Card popping animaitions
 		gsap.fromTo(
-			".left-pop",
+			".first-pop",
+			{
+				x: 250,
+				rotateY: 70,
+				autoAlpha: 0,
+			},
+			{
+				zIndex: 20,
+				rotateY: 0,
+				x: 0,
+				duration: 0.5,
+				transformStyle: "preserve-3d",
+				height: "100%",
+				immediateRender: false,
+				autoAlpha: 1,
+				overwrite: "auto",
+				ease: "power2.out",
+				scrollTrigger: {
+					trigger: ".xu-xin",
+					start: "center bottom",
+					toggleActions: "play none none reverse",
+					onLeaveBack: () => {
+						gsap.set(".first-pop", {
+							x: 0,
+							rotateY: 0,
+							height: "80%",
+							zIndex: 5,
+						});
+					},
+				},
+			},
+		);
+		gsap.fromTo(
+			".second-pop",
 			{
 				x: -250,
 				rotateY: -50,
@@ -127,7 +160,7 @@ function MainContent() {
 					start: "center bottom",
 					toggleActions: "play none none reverse",
 					onLeaveBack: () => {
-						gsap.set(".left", {
+						gsap.set(".second-pop", {
 							x: 0,
 							rotateY: 0,
 							height: "80%",
@@ -139,7 +172,7 @@ function MainContent() {
 		);
 
 		gsap.fromTo(
-			".right-pop",
+			".third-pop",
 			{
 				x: 250,
 				rotateY: 50,
@@ -159,7 +192,7 @@ function MainContent() {
 					start: "center bottom",
 					toggleActions: "play none none reverse",
 					onLeaveBack: () => {
-						gsap.set(".right", {
+						gsap.set(".third-pop", {
 							x: 0,
 							rotateY: 0,
 							height: "80%",
@@ -189,7 +222,7 @@ function MainContent() {
 
 		cards.forEach((card, i) => {
 			if (i > 0) {
-				gsap.set(card, { zIndex: "60" + i });
+				gsap.set(card, { zIndex: 60 + i });
 				tl.to(
 					card,
 					{
@@ -221,11 +254,18 @@ function MainContent() {
 		);
 	}, [lenis]);
 
-	const imagesForHof = ["abc.jpg", "abc.jpg", "abc.jpg", "abc.jpg", "abc.jpg"];
+	const imagesForHof = [
+		"china.jpg",
+		"abc.jpg",
+		"abc.jpg",
+		"abc.jpg",
+		"abc.jpg",
+	];
 
 	return (
 		<>
-			<div className="img-container w-full fixed h-100 top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] mt-10 perspective-midrange">
+			<div className="img-container w-full fixed h-100 top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] perspective-midrange">
+				{/* Intro cards */}
 				<div className="img-card left rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden">
 					<img
 						src="images/simon-gauzy.avif"
@@ -249,14 +289,21 @@ function MainContent() {
 				</div>
 
 				{/* Popping img card */}
-				<div className="img-card left-pop rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden invisible">
+				<div className="img-card first-pop rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden invisible">
+					<img
+						src="images/china.jpg"
+						alt="simon-gauzy"
+						className="w-full h-full object-cover"
+					/>
+				</div>
+				<div className="img-card second-pop rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden invisible">
 					<img
 						src="images/simon-gauzy.avif"
 						alt="simon-gauzy"
 						className="w-full h-full object-cover"
 					/>
 				</div>
-				<div className="img-card right-pop rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden invisible">
+				<div className="img-card third-pop rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden invisible">
 					<img
 						src="images/koki-niwa.jpg"
 						alt="koki-niwa"
@@ -272,7 +319,7 @@ function MainContent() {
 							className={`img-card hof-card rounded-3xl w-75 h-full absolute z-40 left-[50%] translate-x-[-50%] overflow-hidden`}
 						>
 							<img
-								src="images/xuxin.jpg"
+								src={`images/${image}`}
 								alt="hof1"
 								className="w-full h-full object-cover"
 							/>
@@ -283,8 +330,8 @@ function MainContent() {
 
 			{/* Hero section */}
 			<section className="hero h-dvh p-10 flex flex-col justify-between">
-				<div className="hero-text text-9xl text-center anton-regular">
-					TABLE TENNIS
+				<div className="hero-text text-9xl text-center anton-regular z-[-1]">
+					LEGENDARY PLAYERS
 				</div>
 
 				<div className="text text-4xl">Play & Enjoy</div>

@@ -59,8 +59,8 @@ function MainContent() {
 				duration: 1,
 				ease: "power2.out",
 			})
-			.to(".left", { x: -250, rotate: -3, duration: 0.5, autoAlpha: 1 })
-			.to(".right", { x: 250, rotate: 3, duration: 0.5, autoAlpha: 1 }, "<");
+			.to(".left", { x: -250, rotate: -3, duration: 0.75, autoAlpha: 1 })
+			.to(".right", { x: 250, rotate: 3, duration: 0.75, autoAlpha: 1 }, "<");
 
 		//scroll image collapse animation
 		gsap.to([".left", ".right"], {
@@ -76,17 +76,17 @@ function MainContent() {
 		});
 
 		//color animation
-		// gsap.to([".hero", ".xu-xin", ".simon-gauzy", ".koki-niwa"], {
+		// gsap.to([".hero", ".first-section", ".simon-gauzy", ".koki-niwa"], {
 		// 	backgroundColor: "red",
 		// 	scrollTrigger: {
-		// 		trigger: ".xu-xin",
+		// 		trigger: ".first-section",
 		// 		start: "center bottom",
 		// 		toggleActions: "play none none reverse",
 		// 	},
 		// });
 
 		// gsap.fromTo(
-		// 	[".hero", ".xu-xin", ".simon-gauzy", ".koki-niwa"],
+		// 	[".hero", ".first-section", ".simon-gauzy", ".koki-niwa"],
 		// 	{ backgroundColor: "red" },
 		// 	{
 		// 		backgroundColor: "green",
@@ -101,7 +101,7 @@ function MainContent() {
 		// );
 
 		// gsap.fromTo(
-		// 	[".hero", ".xu-xin", ".simon-gauzy", ".koki-niwa"],
+		// 	[".hero", ".first-section", ".simon-gauzy", ".koki-niwa"],
 		// 	{ backgroundColor: "green" },
 		// 	{
 		// 		backgroundColor: "blue",
@@ -134,7 +134,7 @@ function MainContent() {
 				overwrite: "auto",
 				ease: "power2.out",
 				scrollTrigger: {
-					trigger: ".xu-xin",
+					trigger: ".first-section",
 					start: "center bottom",
 					toggleActions: "play none none reverse",
 					onLeaveBack: () => {
@@ -149,10 +149,10 @@ function MainContent() {
 			},
 		);
 
-		// Expading animation
+		// Expading animation for first section
 		const firstSectionTl = gsap.timeline({
 			scrollTrigger: {
-				trigger: ".xu-xin",
+				trigger: ".first-section",
 				start: "top top",
 				end: "+=1000px",
 				pin: true,
@@ -177,7 +177,7 @@ function MainContent() {
 			"<",
 		);
 		firstSectionTl.to(".img-container", {
-			height: "400px",
+			height: "60vh",
 		});
 		firstSectionTl.to(
 			".img-card",
@@ -194,18 +194,18 @@ function MainContent() {
 			".second-pop",
 			{
 				x: -250,
-				rotateY: -50,
-				visibility: "hidden",
+				rotateY: -70,
+				autoAlpha: 0,
 			},
 			{
-				zIndex: 20,
+				zIndex: 30,
 				rotateY: 0,
 				x: 0,
-				duration: 0.2,
+				duration: 0.5,
 				transformStyle: "preserve-3d",
 				height: "100%",
 				immediateRender: false,
-				visibility: "visible",
+				autoAlpha: 1,
 				overwrite: "auto",
 				scrollTrigger: {
 					trigger: ".simon-gauzy",
@@ -223,6 +223,46 @@ function MainContent() {
 			},
 		);
 
+		const secondSectionTl = gsap.timeline({
+			scrollTrigger: {
+				trigger: ".simon-gauzy",
+				start: "top top",
+				end: "+=1000px",
+				pin: true,
+				scrub: true,
+				anticipatePin: 1,
+				immediateRender: false,
+			},
+		});
+
+		secondSectionTl.to(".img-container", {
+			height: "100%",
+		});
+
+		secondSectionTl.to(
+			".img-card",
+			{
+				width: "50%",
+				left: "0",
+				xPercent: 0,
+				borderRadius: 0,
+			},
+			"<",
+		);
+		secondSectionTl.to(".img-container", {
+			height: "60vh",
+		});
+		secondSectionTl.to(
+			".img-card",
+			{
+				left: "50%",
+				width: "300px",
+				xPercent: -50,
+				borderRadius: "24px",
+			},
+			"<",
+		);
+
 		gsap.fromTo(
 			".third-pop",
 			{
@@ -232,7 +272,7 @@ function MainContent() {
 			{
 				x: 0,
 				rotateY: 0,
-				zIndex: 30,
+				zIndex: 40,
 				duration: 0.2,
 				transformStyle: "preserve-3d",
 				height: "100%",
@@ -316,7 +356,7 @@ function MainContent() {
 
 	return (
 		<>
-			<div className="img-container w-full fixed h-100 top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] perspective-midrange">
+			<div className="img-container w-full fixed h-[60vh] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] perspective-midrange">
 				{/* Intro cards */}
 				<div className="img-card left rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden">
 					<img
@@ -390,19 +430,34 @@ function MainContent() {
 			</section>
 
 			{/* Xuxin section */}
-			<section className="xu-xin h-dvh flex items-center w-full"></section>
-
-			{/* Simon Gauzy section */}
-			<section className="simon-gauzy h-dvh flex items-center bg-yellow-200">
-				<div className="text-container text-5xl font-bold flex-1 text-center text-white">
-					SIMON GAUZY
-				</div>
-				{/* Same width as the img container */}
-				<div className="w-75 h-full"></div>
-				<div className="text-5xl font-bold flex-1 text-center text-white">
-					MAGICIAN
+			<section className="first-section h-dvh flex items-center w-full">
+				<div className="player-stats w-[50%] h-full ml-auto">
+					<h1 className="text-5xl">Ma Long</h1>
+					<div className="info">
+						<h2>Info</h2>
+						<ul>
+							<li>Nickname: The Dragon</li>
+							<li>Height: 5'9</li>
+							<li>Nationality: China</li>
+							<li>Playing style: Right-handed, shakehand grip</li>
+						</ul>
+					</div>
+					<div className="stats">
+						<h2>Stats</h2>
+						<ul>
+							<li>Power</li>
+							<li>Spin</li>
+							<li>Speed</li>
+							<li>Control</li>
+							<li>Creativity</li>
+							<li>Serve</li>
+						</ul>
+					</div>
 				</div>
 			</section>
+
+			{/* Simon Gauzy section */}
+			<section className="simon-gauzy h-dvh flex items-center "></section>
 
 			{/* Koki Niwa section */}
 			<section className="koki-niwa h-dvh flex items-center">

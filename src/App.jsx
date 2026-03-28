@@ -3,6 +3,8 @@ import { SplitText, ScrollTrigger } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import { useLenis } from "lenis/react";
 import ReactLenis from "lenis/react";
+import ProgressBar from "./components/ProgressBar";
+import { maLongStats, imagesForHof } from "./constants.js";
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(SplitText);
@@ -346,14 +348,6 @@ function MainContent() {
 		);
 	}, [lenis]);
 
-	const imagesForHof = [
-		"china.jpg",
-		"abc.jpg",
-		"abc.jpg",
-		"abc.jpg",
-		"abc.jpg",
-	];
-
 	return (
 		<>
 			<div className="img-container w-full fixed h-[60vh] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] perspective-midrange">
@@ -445,12 +439,13 @@ function MainContent() {
 					<div className="stats">
 						<h2>Stats</h2>
 						<ul>
-							<li>Power</li>
-							<li>Spin</li>
-							<li>Speed</li>
-							<li>Control</li>
-							<li>Creativity</li>
-							<li>Serve</li>
+							{maLongStats.map((stats, i) => (
+								<li key={i} className="flex items-center gap-2">
+									<span>{stats.title}</span>
+									<ProgressBar score={stats.score} />
+									<span>{stats.score}/10</span>
+								</li>
+							))}
 						</ul>
 					</div>
 				</div>

@@ -77,45 +77,6 @@ function MainContent() {
 			},
 		});
 
-		//color animation
-		// gsap.to([".hero", ".first-section", ".simon-gauzy", ".koki-niwa"], {
-		// 	backgroundColor: "red",
-		// 	scrollTrigger: {
-		// 		trigger: ".first-section",
-		// 		start: "center bottom",
-		// 		toggleActions: "play none none reverse",
-		// 	},
-		// });
-
-		// gsap.fromTo(
-		// 	[".hero", ".first-section", ".simon-gauzy", ".koki-niwa"],
-		// 	{ backgroundColor: "red" },
-		// 	{
-		// 		backgroundColor: "green",
-		// 		immediateRender: false,
-		// 		scrollTrigger: {
-		// 			trigger: ".simon-gauzy",
-		// 			start: "center bottom",
-		// 			toggleActions: "play none none reverse",
-		// 			preventOverlaps: true,
-		// 		},
-		// 	},
-		// );
-
-		// gsap.fromTo(
-		// 	[".hero", ".first-section", ".simon-gauzy", ".koki-niwa"],
-		// 	{ backgroundColor: "green" },
-		// 	{
-		// 		backgroundColor: "blue",
-		// 		immediateRender: false,
-		// 		scrollTrigger: {
-		// 			trigger: ".koki-niwa",
-		// 			start: "center bottom",
-		// 			toggleActions: "play none none reverse",
-		// 		},
-		// 	},
-		// );
-
 		//Card popping animaitions
 		gsap.fromTo(
 			".first-pop",
@@ -151,12 +112,13 @@ function MainContent() {
 			},
 		);
 
-		// Expading animation for first section
+		//FIRST SECTION
+		// Expanding animation for first section
 		const firstSectionTl = gsap.timeline({
 			scrollTrigger: {
 				trigger: ".first-section",
 				start: "top top",
-				end: "+=1000px",
+				end: "+=3000px",
 				pin: true,
 				scrub: true,
 				anticipatePin: 1,
@@ -164,10 +126,10 @@ function MainContent() {
 			},
 		});
 
+		//Card animation
 		firstSectionTl.to(".img-container", {
 			height: "100%",
 		});
-
 		firstSectionTl.to(
 			".img-card",
 			{
@@ -178,6 +140,52 @@ function MainContent() {
 			},
 			"<",
 		);
+
+		//TEXT ANIMATION
+		firstSectionTl.from(".first-name", {
+			yPercent: 100,
+		});
+
+		firstSectionTl.from(".first-info-title", {
+			yPercent: 100,
+		});
+
+		firstSectionTl.from(".first-info", {
+			xPercent: 10,
+			autoAlpha: 0,
+		});
+
+		firstSectionTl.from(".first-stats-title", {
+			yPercent: 100,
+		});
+
+		firstSectionTl.from(
+			".stats ul li",
+			{
+				y: 30,
+				autoAlpha: 0,
+				stagger: 0.2,
+				duration: 0.8,
+				ease: "power2.out",
+			},
+			"-=0.2",
+		);
+
+		firstSectionTl.from(
+			".progress-bar",
+			{
+				scaleX: 0,
+				stagger: 0.1,
+				ease: "power2.out",
+				duration: 1,
+			},
+			"<",
+		);
+
+		firstSectionTl.to(".first-player-stats", {
+			autoAlpha: 0,
+		});
+
 		firstSectionTl.to(".img-container", {
 			height: "60vh",
 		});
@@ -225,6 +233,7 @@ function MainContent() {
 			},
 		);
 
+		// SECOND SECTION
 		const secondSectionTl = gsap.timeline({
 			scrollTrigger: {
 				trigger: ".simon-gauzy",
@@ -350,7 +359,7 @@ function MainContent() {
 
 	return (
 		<>
-			<div className="img-container w-full fixed h-[60vh] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] perspective-midrange">
+			<div className="img-container w-full fixed h-[60vh] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] perspective-midrange z-2">
 				{/* Intro cards */}
 				<div className="img-card left rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden">
 					<img
@@ -415,21 +424,27 @@ function MainContent() {
 			</div>
 
 			{/* Hero section */}
-			<section className="hero h-dvh px-10 flex flex-col justify-between relative">
-				<div className="hero-text text-9xl text-center anton-regular absolute left-0 z-[-1] w-full top-[50%] translate-y-[-50%]">
+			<section className="hero h-dvh px-10 flex flex-col justify-between relative bg-mauve-500 text-white">
+				<div className="hero-text text-9xl text-center anton-regular absolute left-0 z-1 w-full top-[50%] translate-y-[-50%]">
 					LEGENDARY PLAYERS
 				</div>
-				{/* 
-				<div className="text text-4xl">Best of the best</div> */}
+
+				<div className="text text-4xl font-bold absolute bottom-10">
+					BEST OF <br /> THE BEST
+				</div>
 			</section>
 
 			{/* Xuxin section */}
 			<section className="first-section h-dvh flex items-center w-full">
-				<div className="player-stats w-[50%] h-full ml-auto">
-					<h1 className="text-5xl">Ma Long</h1>
+				<div className="first-player-stats w-[50%] h-full ml-auto p-20">
+					<div className="text-mask overflow-hidden">
+						<h1 className="first-name text-5xl text-center">MA LONG</h1>
+					</div>
 					<div className="info">
-						<h2>Info</h2>
-						<ul>
+						<div className="text-mask overflow-hidden">
+							<h2 className="first-info-title text-2xl">Info</h2>
+						</div>
+						<ul className="first-info">
 							<li>Nickname: The Dragon</li>
 							<li>Height: 5'9</li>
 							<li>Nationality: China</li>
@@ -437,11 +452,13 @@ function MainContent() {
 						</ul>
 					</div>
 					<div className="stats">
-						<h2>Stats</h2>
+						<div className="text-mask overflow-hidden">
+							<h2 className="first-stats-title text-2xl">Stats</h2>
+						</div>
 						<ul>
 							{maLongStats.map((stats, i) => (
-								<li key={i} className="flex items-center gap-2">
-									<span>{stats.title}</span>
+								<li key={i} className="flex items-center gap-2 ">
+									<span className="w-15">{stats.title}</span>
 									<ProgressBar score={stats.score} />
 									<span>{stats.score}/10</span>
 								</li>

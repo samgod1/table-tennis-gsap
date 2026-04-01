@@ -120,7 +120,7 @@ function MainContent() {
 				start: "top top",
 				end: "+=3000px",
 				pin: true,
-				scrub: true,
+				scrub: 1,
 				anticipatePin: 1,
 				immediateRender: false,
 			},
@@ -450,7 +450,9 @@ function MainContent() {
 					</div>
 					<div className="info flex-1">
 						<div className="text-mask overflow-hidden">
-							<h2 className="first-info-title text-3xl mb-2">Info</h2>
+							<h2 className="first-info-title text-3xl mb-2 font-semibold">
+								Info
+							</h2>
 						</div>
 						<ul className="first-info flex gap-2 flex-col">
 							<li className="first-nickname flex gap-2">
@@ -460,7 +462,9 @@ function MainContent() {
 										alt="china flag"
 										className="w-6 h-6 rounded-full"
 									/>
-									<span>Nickname: The Dragon</span>
+									<span>
+										<span className="font-semibold">Nickname</span>: The Dragon
+									</span>
 								</div>
 								<div className="first-height bg-white flex-1 rounded-sm p-3 flex items-center gap-2">
 									<img
@@ -468,7 +472,9 @@ function MainContent() {
 										alt="height"
 										className="w-6 h-6"
 									/>
-									<span>Height: 5'9</span>
+									<span>
+										<span className="font-semibold">Height</span>: 5'9
+									</span>
 								</div>
 							</li>
 							<li className="first-nationality bg-white rounded-sm p-3 flex gap-2 items-center">
@@ -477,21 +483,40 @@ function MainContent() {
 									alt="china flag"
 									className="w-6 h-6 rounded-full"
 								/>
-								<span>Nationality: China</span>
+								<span>
+									<span className="font-semibold">Nationality</span>: China
+								</span>
 							</li>
-							<li className="first-playing-style bg-white rounded-sm p-3">
-								Playing style: Right-handed, shakehand grip
+							<li className="first-playing-style bg-white rounded-sm p-3 flex items-center gap-2">
+								<img
+									src="/images/racket.png"
+									alt="china flag"
+									className="w-6 h-6"
+								/>
+								<span>
+									<span className="font-semibold">Playing style</span>:
+									Right-handed, shakehand grip
+								</span>
 							</li>
 						</ul>
 					</div>
 					<div className="stats flex-1 flex flex-col">
 						<div className="text-mask overflow-hidden">
-							<h2 className="first-stats-title text-3xl mb-2">Stats</h2>
+							<h2 className="first-stats-title text-3xl mb-2 font-semibold">
+								Stats
+							</h2>
 						</div>
 						<ul className="flex flex-col justify-between grow">
 							{maLongStats.map((stats, i) => (
 								<li key={i} className="flex items-center gap-2 text-xl">
-									<span className="w-20">{stats.title}</span>
+									<span className="w-25 flex items-center gap-2">
+										<img
+											src={stats.image}
+											alt="china flag"
+											className="w-6 h-6"
+										/>
+										<span>{stats.title}</span>
+									</span>
 									<ProgressBar score={stats.score} />
 									<span>{stats.score}/10</span>
 								</li>

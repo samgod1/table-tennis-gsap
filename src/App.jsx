@@ -150,10 +150,18 @@ function MainContent() {
 			yPercent: 100,
 		});
 
-		firstSectionTl.from(".first-info", {
-			xPercent: 10,
-			autoAlpha: 0,
-		});
+		firstSectionTl.from(
+			[
+				".first-nickname",
+				".first-height",
+				".first-nationality",
+				".first-playing-style",
+			],
+			{
+				autoAlpha: 0,
+				stagger: 0.5,
+			},
+		);
 
 		firstSectionTl.from(".first-stats-title", {
 			yPercent: 100,
@@ -445,7 +453,7 @@ function MainContent() {
 							<h2 className="first-info-title text-3xl mb-2">Info</h2>
 						</div>
 						<ul className="first-info flex gap-2 flex-col">
-							<li className="flex gap-2">
+							<li className="first-nickname flex gap-2">
 								<div className="bg-white flex-1 rounded-sm p-3 flex gap-2">
 									<img
 										src="/images/dragon-logo.png"
@@ -454,7 +462,7 @@ function MainContent() {
 									/>
 									<span>Nickname: The Dragon</span>
 								</div>
-								<div className="bg-white flex-1 rounded-sm p-3 flex items-center gap-2">
+								<div className="first-height bg-white flex-1 rounded-sm p-3 flex items-center gap-2">
 									<img
 										src="/images/height.png"
 										alt="height"
@@ -463,7 +471,7 @@ function MainContent() {
 									<span>Height: 5'9</span>
 								</div>
 							</li>
-							<li className="bg-white rounded-sm p-3 flex gap-2 items-center">
+							<li className="first-nationality bg-white rounded-sm p-3 flex gap-2 items-center">
 								<img
 									src="/images/china-flag.jpg"
 									alt="china flag"
@@ -471,7 +479,7 @@ function MainContent() {
 								/>
 								<span>Nationality: China</span>
 							</li>
-							<li className="bg-white rounded-sm p-3">
+							<li className="first-playing-style bg-white rounded-sm p-3">
 								Playing style: Right-handed, shakehand grip
 							</li>
 						</ul>

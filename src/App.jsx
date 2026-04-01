@@ -424,7 +424,7 @@ function MainContent() {
 			</div>
 
 			{/* Hero section */}
-			<section className="hero h-dvh px-10 flex flex-col justify-between relative bg-mauve-500 text-white">
+			<section className="hero h-dvh px-10 flex flex-col justify-between relative bg-green-200 text-emerald-700">
 				<div className="hero-text text-9xl text-center anton-regular absolute left-0 z-1 w-full top-[50%] translate-y-[-50%]">
 					LEGENDARY PLAYERS
 				</div>
@@ -436,29 +436,54 @@ function MainContent() {
 
 			{/* Xuxin section */}
 			<section className="first-section h-dvh flex items-center w-full">
-				<div className="first-player-stats w-[50%] h-full ml-auto p-20">
-					<div className="text-mask overflow-hidden">
-						<h1 className="first-name text-5xl text-center">MA LONG</h1>
+				<div className="first-player-stats w-[50%] h-full ml-auto p-20 bg-amber-100 flex flex-col">
+					<div className="text-mask overflow-hidden mb-5">
+						<h1 className="first-name text-5xl font-bold">MA LONG</h1>
 					</div>
-					<div className="info">
+					<div className="info flex-1">
 						<div className="text-mask overflow-hidden">
-							<h2 className="first-info-title text-2xl">Info</h2>
+							<h2 className="first-info-title text-3xl mb-2">Info</h2>
 						</div>
-						<ul className="first-info">
-							<li>Nickname: The Dragon</li>
-							<li>Height: 5'9</li>
-							<li>Nationality: China</li>
-							<li>Playing style: Right-handed, shakehand grip</li>
+						<ul className="first-info flex gap-2 flex-col">
+							<li className="flex gap-2">
+								<div className="bg-white flex-1 rounded-sm p-3 flex gap-2">
+									<img
+										src="/images/dragon-logo.png"
+										alt="china flag"
+										className="w-6 h-6 rounded-full"
+									/>
+									<span>Nickname: The Dragon</span>
+								</div>
+								<div className="bg-white flex-1 rounded-sm p-3 flex items-center gap-2">
+									<img
+										src="/images/height.png"
+										alt="height"
+										className="w-6 h-6"
+									/>
+									<span>Height: 5'9</span>
+								</div>
+							</li>
+							<li className="bg-white rounded-sm p-3 flex gap-2 items-center">
+								<img
+									src="/images/china-flag.jpg"
+									alt="china flag"
+									className="w-6 h-6 rounded-full"
+								/>
+								<span>Nationality: China</span>
+							</li>
+							<li className="bg-white rounded-sm p-3">
+								Playing style: Right-handed, shakehand grip
+							</li>
 						</ul>
 					</div>
-					<div className="stats">
+					<div className="stats flex-1 flex flex-col">
 						<div className="text-mask overflow-hidden">
-							<h2 className="first-stats-title text-2xl">Stats</h2>
+							<h2 className="first-stats-title text-3xl mb-2">Stats</h2>
 						</div>
-						<ul>
+						<ul className="flex flex-col justify-between grow">
 							{maLongStats.map((stats, i) => (
-								<li key={i} className="flex items-center gap-2 ">
-									<span className="w-15">{stats.title}</span>
+								<li key={i} className="flex items-center gap-2 text-xl">
+									<span className="w-20">{stats.title}</span>
 									<ProgressBar score={stats.score} />
 									<span>{stats.score}/10</span>
 								</li>

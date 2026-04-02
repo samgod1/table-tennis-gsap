@@ -62,7 +62,15 @@ function MainContent() {
 				ease: "power2.out",
 			})
 			.to(".left", { x: -250, rotate: -3, duration: 0.75, autoAlpha: 1 })
-			.to(".right", { x: 250, rotate: 3, duration: 0.75, autoAlpha: 1 }, "<");
+			.to(".right", { x: 250, rotate: 3, duration: 0.75, autoAlpha: 1 }, "<")
+			.from(
+				".hero-secondary-text",
+				{
+					yPercent: 100,
+					stagger: 0.5,
+				},
+				"-=.5",
+			);
 
 		//scroll image collapse animation
 		gsap.to([".left", ".right"], {
@@ -432,13 +440,18 @@ function MainContent() {
 			</div>
 
 			{/* Hero section */}
-			<section className="hero h-dvh px-10 flex flex-col justify-between relative bg-green-200 text-emerald-700">
+			<section className="hero h-dvh px-10 flex flex-col justify-between relative bg-olive-100 text-emerald-700">
 				<div className="hero-text text-9xl text-center anton-regular absolute left-0 z-1 w-full top-[50%] translate-y-[-50%]">
 					LEGENDARY PLAYERS
 				</div>
 
-				<div className="text text-4xl font-bold absolute bottom-10">
-					BEST OF <br /> THE BEST
+				<div className="wrapper text text-7xl font-bold absolute bottom-10 anton-regular flex flex-col">
+					<span className="text-mask overflow-hidden">
+						<p className="hero-secondary-text">BEST OF</p>
+					</span>
+					<span className="text-mask overflow-hidden">
+						<p className="hero-secondary-text">THE BEST</p>
+					</span>
 				</div>
 			</section>
 

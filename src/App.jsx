@@ -120,6 +120,20 @@ function MainContent() {
 			},
 		);
 
+		// Background color change of first section
+		gsap.fromTo(
+			[".hero", ".first-section"],
+			{ backgroundColor: "#f4f4f0" },
+			{
+				backgroundColor: "#c4b4ff",
+				scrollTrigger: {
+					trigger: ".first-section",
+					start: "center bottom",
+					toggleActions: "play none none reverse",
+				},
+			},
+		);
+
 		//FIRST SECTION
 		// Expanding animation for first section
 		const firstSectionTl = gsap.timeline({
@@ -198,7 +212,7 @@ function MainContent() {
 			"<",
 		);
 
-		firstSectionTl.to(".first-player-stats", {
+		firstSectionTl.to(".first-player", {
 			autoAlpha: 0,
 		});
 
@@ -455,9 +469,9 @@ function MainContent() {
 				</div>
 			</section>
 
-			{/* Xuxin section */}
-			<section className="first-section h-dvh flex items-center w-full">
-				<div className="first-player-stats w-[50%] h-full ml-auto p-20 bg-amber-100 flex flex-col">
+			{/* First section */}
+			<section className="first-section h-dvh flex items-center w-full inter-regular">
+				<div className="first-player w-[50%] h-full ml-auto p-20 flex flex-col">
 					<div className="text-mask overflow-hidden mb-5">
 						<h1 className="first-name text-5xl font-bold">MA LONG</h1>
 					</div>

@@ -125,7 +125,7 @@ function MainContent() {
 			[".hero", ".first-section"],
 			{ backgroundColor: "#f4f4f0" },
 			{
-				backgroundColor: "#c4b4ff",
+				backgroundColor: "#ffffff",
 				scrollTrigger: {
 					trigger: ".first-section",
 					start: "center bottom",
@@ -165,11 +165,11 @@ function MainContent() {
 
 		//TEXT ANIMATION
 		firstSectionTl.from(".first-name", {
-			yPercent: 100,
+			yPercent: 103,
 		});
 
 		firstSectionTl.from(".first-info-title", {
-			yPercent: 100,
+			yPercent: 105,
 		});
 
 		firstSectionTl.from(
@@ -186,7 +186,7 @@ function MainContent() {
 		);
 
 		firstSectionTl.from(".first-stats-title", {
-			yPercent: 100,
+			yPercent: 103,
 		});
 
 		firstSectionTl.from(
@@ -470,10 +470,12 @@ function MainContent() {
 			</section>
 
 			{/* First section */}
-			<section className="first-section h-dvh flex items-center w-full inter-regular">
-				<div className="first-player w-[50%] h-full ml-auto p-20 flex flex-col">
+			<section className="first-section h-dvh flex items-center w-full inter-regular text-stone-700">
+				<div className="first-player w-[50%] h-full ml-auto p-15 flex flex-col">
 					<div className="text-mask overflow-hidden mb-5">
-						<h1 className="first-name text-5xl font-bold">MA LONG</h1>
+						<h1 className="first-name text-5xl font-bold text-stone-800">
+							MA LONG
+						</h1>
 					</div>
 					<div className="info flex-1">
 						<div className="text-mask overflow-hidden">
@@ -483,7 +485,7 @@ function MainContent() {
 						</div>
 						<ul className="first-info flex gap-2 flex-col">
 							<li className="first-nickname flex gap-2">
-								<div className="bg-white flex-1 rounded-sm p-3 flex gap-2">
+								<div className="bg-gray-200 flex-1 rounded-sm p-3 flex gap-2">
 									<img
 										src="/images/dragon-logo.png"
 										alt="china flag"
@@ -493,7 +495,7 @@ function MainContent() {
 										<span className="font-semibold">Nickname</span>: The Dragon
 									</span>
 								</div>
-								<div className="first-height bg-white flex-1 rounded-sm p-3 flex items-center gap-2">
+								<div className="first-height bg-gray-200 flex-1 rounded-sm p-3 flex items-center gap-2">
 									<img
 										src="/images/height.png"
 										alt="height"
@@ -504,7 +506,7 @@ function MainContent() {
 									</span>
 								</div>
 							</li>
-							<li className="first-nationality bg-white rounded-sm p-3 flex gap-2 items-center">
+							<li className="first-nationality bg-gray-200 rounded-sm p-3 flex gap-2 items-center">
 								<img
 									src="/images/china-flag.jpg"
 									alt="china flag"
@@ -514,7 +516,7 @@ function MainContent() {
 									<span className="font-semibold">Nationality</span>: China
 								</span>
 							</li>
-							<li className="first-playing-style bg-white rounded-sm p-3 flex items-center gap-2">
+							<li className="first-playing-style bg-gray-200 rounded-sm p-3 flex items-center gap-2">
 								<img
 									src="/images/racket.png"
 									alt="china flag"

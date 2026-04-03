@@ -4,7 +4,7 @@ import { useGSAP } from "@gsap/react";
 import { useLenis } from "lenis/react";
 import ReactLenis from "lenis/react";
 import ProgressBar from "./components/ProgressBar";
-import { maLongStats, imagesForHof } from "./constants.js";
+import { maLongStats, imagesForHof, simonGauzyStats } from "./constants.js";
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(SplitText);
@@ -190,7 +190,7 @@ function MainContent() {
 		});
 
 		firstSectionTl.from(
-			".stats ul li",
+			".first-stats ul li",
 			{
 				y: 30,
 				autoAlpha: 0,
@@ -202,7 +202,7 @@ function MainContent() {
 		);
 
 		firstSectionTl.from(
-			".progress-bar",
+			".first-stats ul .progress-bar",
 			{
 				scaleX: 0,
 				stagger: 0.1,
@@ -268,9 +268,9 @@ function MainContent() {
 			scrollTrigger: {
 				trigger: ".simon-gauzy",
 				start: "top top",
-				end: "+=1000px",
+				end: "+=3000px",
 				pin: true,
-				scrub: true,
+				scrub: 1,
 				anticipatePin: 1,
 				immediateRender: false,
 			},
@@ -290,6 +290,59 @@ function MainContent() {
 			},
 			"<",
 		);
+
+		secondSectionTl.from(".second-name", {
+			yPercent: 103,
+		});
+
+		secondSectionTl.from(".second-info-title", {
+			yPercent: 105,
+		});
+
+		secondSectionTl.from(
+			[
+				".second-nickname",
+				".second-height",
+				".second-nationality",
+				".second-playing-style",
+			],
+			{
+				autoAlpha: 0,
+				stagger: 0.5,
+			},
+		);
+
+		secondSectionTl.from(".second-stats-title", {
+			yPercent: 103,
+		});
+
+		secondSectionTl.from(
+			".second-stats ul li",
+			{
+				y: 30,
+				autoAlpha: 0,
+				stagger: 0.2,
+				duration: 0.8,
+				ease: "power2.out",
+			},
+			"-=0.2",
+		);
+
+		secondSectionTl.from(
+			".second-stats ul .progress-bar",
+			{
+				scaleX: 0,
+				stagger: 0.1,
+				ease: "power2.out",
+				duration: 1,
+			},
+			"<",
+		);
+
+		secondSectionTl.to(".second-player", {
+			autoAlpha: 0,
+		});
+
 		secondSectionTl.to(".img-container", {
 			height: "60vh",
 		});
@@ -529,7 +582,7 @@ function MainContent() {
 							</li>
 						</ul>
 					</div>
-					<div className="stats flex-1 flex flex-col">
+					<div className="first-stats flex-1 flex flex-col">
 						<div className="text-mask overflow-hidden">
 							<h2 className="first-stats-title text-3xl mb-2 font-semibold">
 								Stats
@@ -555,8 +608,91 @@ function MainContent() {
 				</div>
 			</section>
 
-			{/* Simon Gauzy section */}
-			<section className="simon-gauzy h-dvh flex items-center "></section>
+			{/*Second section */}
+			<section className="simon-gauzy h-dvh flex items-center ">
+				<div className="second-player w-[50%] h-full ml-auto p-15 flex flex-col">
+					<div className="text-mask overflow-hidden mb-5">
+						<h1 className="second-name text-5xl font-bold text-stone-800">
+							SIMON GAUZY
+						</h1>
+					</div>
+					<div className="info flex-1">
+						<div className="second-mask overflow-hidden">
+							<h2 className="second-info-title text-3xl mb-2 font-semibold">
+								Info
+							</h2>
+						</div>
+						<ul className="second-info flex gap-2 flex-col">
+							<li className="second-nickname flex gap-2">
+								<div className="bg-gray-200 flex-1 rounded-sm p-3 flex gap-2">
+									<img
+										src="/images/magician.png"
+										alt="china flag"
+										className="w-6 h-6 rounded-full"
+									/>
+									<span>
+										<span className="font-semibold">Nickname</span>: Magician
+									</span>
+								</div>
+								<div className="second-height bg-gray-200 flex-1 rounded-sm p-3 flex items-center gap-2">
+									<img
+										src="/images/height.png"
+										alt="height"
+										className="w-6 h-6"
+									/>
+									<span>
+										<span className="font-semibold">Height</span>: 6'0
+									</span>
+								</div>
+							</li>
+							<li className="second-nationality bg-gray-200 rounded-sm p-3 flex gap-2 items-center">
+								<img
+									src="/images/france-flag.png"
+									alt="france flag"
+									className="w-6 h-6 rounded-full"
+								/>
+								<span>
+									<span className="font-semibold">Nationality</span>: France
+								</span>
+							</li>
+							<li className="second-playing-style bg-gray-200 rounded-sm p-3 flex items-center gap-2">
+								<img
+									src="/images/racket.png"
+									alt="china flag"
+									className="w-6 h-6"
+								/>
+								<span>
+									<span className="font-semibold">Playing style</span>:
+									Right-handed, shakehand grip
+								</span>
+							</li>
+						</ul>
+					</div>
+					<div className="second-stats flex-1 flex flex-col">
+						<div className="text-mask overflow-hidden">
+							<h2 className="second-stats-title text-3xl mb-2 font-semibold">
+								Stats
+							</h2>
+						</div>
+						<ul className="flex flex-col justify-between grow">
+							{simonGauzyStats.map((stats, i) => (
+								<li key={i} className="flex items-center gap-2 text-xl">
+									<span className="w-25 flex items-center gap-2">
+										<img
+											src={stats.image}
+											alt="china flag"
+											className="w-6 h-6"
+										/>
+										<span>{stats.title}</span>
+									</span>
+									<ProgressBar score={stats.score} />
+									<span>{stats.score}/10</span>
+								</li>
+							))}
+						</ul>
+					</div>
+				</div>
+			</section>
 
 			{/* Koki Niwa section */}
 			<section className="koki-niwa h-dvh flex items-center">

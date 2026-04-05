@@ -4,7 +4,12 @@ import { useGSAP } from "@gsap/react";
 import { useLenis } from "lenis/react";
 import ReactLenis from "lenis/react";
 import ProgressBar from "./components/ProgressBar";
-import { maLongStats, imagesForHof, simonGauzyStats } from "./constants.js";
+import {
+	maLongStats,
+	imagesForHof,
+	simonGauzyStats,
+	trulsMoregardhStats,
+} from "./constants.js";
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(SplitText);
@@ -248,7 +253,7 @@ function MainContent() {
 				autoAlpha: 1,
 				overwrite: "auto",
 				scrollTrigger: {
-					trigger: ".simon-gauzy",
+					trigger: ".second-section",
 					start: "center bottom",
 					toggleActions: "play none none reverse",
 					onLeaveBack: () => {
@@ -266,7 +271,7 @@ function MainContent() {
 		// SECOND SECTION
 		const secondSectionTl = gsap.timeline({
 			scrollTrigger: {
-				trigger: ".simon-gauzy",
+				trigger: ".second-section",
 				start: "top top",
 				end: "+=3000px",
 				pin: true,
@@ -374,7 +379,7 @@ function MainContent() {
 				overwrite: "auto",
 				visibility: "visible",
 				scrollTrigger: {
-					trigger: ".koki-niwa",
+					trigger: ".third-section",
 					start: "center bottom",
 					toggleActions: "play none none reverse",
 					onLeaveBack: () => {
@@ -387,6 +392,100 @@ function MainContent() {
 					},
 				},
 			},
+		);
+
+		// THIRD SECTION
+		const thirdSectionTl = gsap.timeline({
+			scrollTrigger: {
+				trigger: ".third-section",
+				start: "top top",
+				end: "+=3000px",
+				pin: true,
+				scrub: 1,
+				anticipatePin: 1,
+				immediateRender: false,
+			},
+		});
+
+		thirdSectionTl.to(".img-container", {
+			height: "100%",
+		});
+
+		thirdSectionTl.to(
+			".img-card",
+			{
+				width: "50%",
+				left: "0",
+				xPercent: 0,
+				borderRadius: 0,
+			},
+			"<",
+		);
+
+		thirdSectionTl.from(".third-name", {
+			yPercent: 103,
+		});
+
+		thirdSectionTl.from(".third-info-title", {
+			yPercent: 105,
+		});
+
+		thirdSectionTl.from(
+			[
+				".third-nickname",
+				".third-height",
+				".third-nationality",
+				".third-playing-style",
+			],
+			{
+				autoAlpha: 0,
+				stagger: 0.5,
+			},
+		);
+
+		thirdSectionTl.from(".third-stats-title", {
+			yPercent: 103,
+		});
+
+		thirdSectionTl.from(
+			".third-stats ul li",
+			{
+				y: 30,
+				autoAlpha: 0,
+				stagger: 0.2,
+				duration: 0.8,
+				ease: "power2.out",
+			},
+			"-=0.2",
+		);
+
+		thirdSectionTl.from(
+			".third-stats ul .progress-bar",
+			{
+				scaleX: 0,
+				stagger: 0.1,
+				ease: "power2.out",
+				duration: 1,
+			},
+			"<",
+		);
+
+		thirdSectionTl.to(".third-player", {
+			autoAlpha: 0,
+		});
+
+		thirdSectionTl.to(".img-container", {
+			height: "60vh",
+		});
+		thirdSectionTl.to(
+			".img-card",
+			{
+				left: "50%",
+				width: "300px",
+				xPercent: -50,
+				borderRadius: "24px",
+			},
+			"<",
 		);
 
 		// Hall of fame horizontal scroll animation
@@ -483,8 +582,8 @@ function MainContent() {
 				</div>
 				<div className="img-card pop-card third-pop rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden invisible">
 					<img
-						src="images/koki-niwa.jpg"
-						alt="koki-niwa"
+						src="images/truls-moregardh.webp"
+						alt="truls moregardh"
 						className="w-full h-full object-cover"
 					/>
 				</div>
@@ -609,7 +708,7 @@ function MainContent() {
 			</section>
 
 			{/*Second section */}
-			<section className="simon-gauzy h-dvh flex items-center ">
+			<section className="second-section h-dvh flex items-center ">
 				<div className="second-player w-[50%] h-full ml-auto p-15 flex flex-col">
 					<div className="text-mask overflow-hidden mb-5">
 						<h1 className="second-name text-5xl font-bold text-stone-800">
@@ -694,15 +793,90 @@ function MainContent() {
 				</div>
 			</section>
 
-			{/* Koki Niwa section */}
-			<section className="koki-niwa h-dvh flex items-center">
-				<div className="text-container text-5xl font-bold flex-1 text-center text-white">
-					KOKI NIWA
-				</div>
-				{/* Same width as the img container */}
-				<div className="w-75 h-full"></div>
-				<div className="text-5xl font-bold flex-1 text-center text-white">
-					GENIUS
+			{/* Third section */}
+			<section className="third-section h-dvh flex items-center">
+				<div className="third-player w-[50%] h-full ml-auto p-15 flex flex-col">
+					<div className="text-mask overflow-hidden mb-5">
+						<h1 className="third-name text-5xl font-bold text-stone-800">
+							TRULS MOREGARDH
+						</h1>
+					</div>
+					<div className="info flex-1">
+						<div className="text-mask overflow-hidden">
+							<h2 className="third-info-title text-3xl mb-2 font-semibold">
+								Info
+							</h2>
+						</div>
+						<ul className="third-info flex gap-2 flex-col">
+							<li className="third-nickname flex gap-2">
+								<div className="bg-gray-200 flex-1 rounded-sm p-3 flex gap-2">
+									<img
+										src="/images/wizard.png"
+										alt="china flag"
+										className="w-6 h-6"
+									/>
+									<span>
+										<span className="font-semibold">Nickname</span>: Swedish
+										Wizard
+									</span>
+								</div>
+								<div className="third-height bg-gray-200 flex-1 rounded-sm p-3 flex items-center gap-2">
+									<img
+										src="/images/height.png"
+										alt="height"
+										className="w-6 h-6"
+									/>
+									<span>
+										<span className="font-semibold">Height</span>: 5'11
+									</span>
+								</div>
+							</li>
+							<li className="third-nationality bg-gray-200 rounded-sm p-3 flex gap-2 items-center">
+								<img
+									src="/images/sweden-flag.png"
+									alt="china flag"
+									className="w-6 h-6 rounded-full"
+								/>
+								<span>
+									<span className="font-semibold">Nationality</span>: Sweden
+								</span>
+							</li>
+							<li className="third-playing-style bg-gray-200 rounded-sm p-3 flex items-center gap-2">
+								<img
+									src="/images/racket.png"
+									alt="china flag"
+									className="w-6 h-6"
+								/>
+								<span>
+									<span className="font-semibold">Playing style</span>:
+									Right-handed, shakehand grip
+								</span>
+							</li>
+						</ul>
+					</div>
+					<div className="third-stats flex-1 flex flex-col">
+						<div className="text-mask overflow-hidden">
+							<h2 className="third-stats-title text-3xl mb-2 font-semibold">
+								Stats
+							</h2>
+						</div>
+						<ul className="flex flex-col justify-between grow">
+							{trulsMoregardhStats.map((stats, i) => (
+								<li key={i} className="flex items-center gap-2 text-xl">
+									<span className="w-25 flex items-center gap-2">
+										<img
+											src={stats.image}
+											alt="china flag"
+											className="w-6 h-6"
+										/>
+										<span>{stats.title}</span>
+									</span>
+									<ProgressBar score={stats.score} />
+									<span>{stats.score}/10</span>
+								</li>
+							))}
+						</ul>
+					</div>
 				</div>
 			</section>
 

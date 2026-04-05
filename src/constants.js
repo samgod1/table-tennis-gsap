@@ -14,6 +14,14 @@ const simonGauzyStats = [
 	{ title: "Serve", score: 8.5, image: "/images/serve.png" },
 ];
 
+const trulsMoregardhStats = [
+	{ title: "Power", score: 8, image: "/images/power.png" },
+	{ title: "Spin", score: 8.5, image: "/images/spin.png" },
+	{ title: "Speed", score: 8.5, image: "/images/speed.png" },
+	{ title: "Control", score: 8, image: "/images/control.png" },
+	{ title: "Serve", score: 8.5, image: "/images/serve.png" },
+];
+
 const imagesForHof = ["china.jpg", "abc.jpg", "abc.jpg", "abc.jpg", "abc.jpg"];
 
-export { maLongStats, simonGauzyStats, imagesForHof };
+export { maLongStats, simonGauzyStats, trulsMoregardhStats, imagesForHof };

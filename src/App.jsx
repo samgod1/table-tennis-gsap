@@ -499,7 +499,7 @@ function MainContent() {
 				trigger: ".hall-of-fame",
 				start: "top top",
 				end: "+=2000",
-				scrub: true,
+				scrub: 0.5,
 				pin: true,
 				anticipatePin: 1,
 			},
@@ -552,15 +552,15 @@ function MainContent() {
 				</div>
 				<div className="img-card middle rounded-3xl w-75 h-full absolute z-10 left-[50%] bottom-0 translate-x-[-50%] overflow-hidden">
 					<img
-						src="images/xuxin.jpg"
-						alt="xuxin"
+						src="images/ma-long.webp"
+						alt="ma-long"
 						className="w-full h-full object-cover"
 					/>
 				</div>
 				<div className="img-card right rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden ">
 					<img
-						src="images/koki-niwa.jpg"
-						alt="koki-niwa"
+						src="images/truls-moregardh.webp"
+						alt="truls-moregardh"
 						className="w-full h-full object-cover"
 					/>
 				</div>
@@ -568,8 +568,8 @@ function MainContent() {
 				{/* Popping img card */}
 				<div className="img-card pop-card first-pop rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden invisible">
 					<img
-						src="images/china.jpg"
-						alt="simon-gauzy"
+						src="images/ma-long.jpg"
+						alt="ma-long"
 						className="w-full h-full object-cover"
 					/>
 				</div>
@@ -582,13 +582,13 @@ function MainContent() {
 				</div>
 				<div className="img-card pop-card third-pop rounded-3xl w-75 h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden invisible">
 					<img
-						src="images/truls-moregardh.webp"
+						src="images/truls-moregardh-1.webp"
 						alt="truls moregardh"
 						className="w-full h-full object-cover"
 					/>
 				</div>
 			</div>
-			<div className="hof-img-container fixed top-[50%] translate-y-[-50%] h-100 z-50 w-full perspective-midrange">
+			<div className="hof-img-container fixed top-[50%] translate-y-[-50%] h-[60vh] z-50 w-full perspective-midrange">
 				{/* Hall of fame cards */}
 				{imagesForHof.map((image) => {
 					return (
@@ -597,7 +597,7 @@ function MainContent() {
 						>
 							<img
 								src={`images/${image}`}
-								alt="hof1"
+								alt={image}
 								className="w-full h-full object-cover"
 							/>
 						</div>
@@ -726,8 +726,8 @@ function MainContent() {
 								<div className="bg-gray-200 flex-1 rounded-sm p-3 flex gap-2">
 									<img
 										src="/images/magician.png"
-										alt="china flag"
-										className="w-6 h-6 rounded-full"
+										alt="magician icon"
+										className="w-6 h-6 rounded"
 									/>
 									<span>
 										<span className="font-semibold">Nickname</span>: Magician

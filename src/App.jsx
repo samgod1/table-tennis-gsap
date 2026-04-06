@@ -588,12 +588,12 @@ function MainContent() {
 					/>
 				</div>
 			</div>
-			<div className="hof-img-container fixed top-[50%] translate-y-[-50%] h-100 w-full perspective-midrange">
+			<div className="hof-img-container fixed top-[50%] translate-y-[-50%] h-100 z-50 w-full perspective-midrange">
 				{/* Hall of fame cards */}
 				{imagesForHof.map((image) => {
 					return (
 						<div
-							className={`img-card hof-card rounded-3xl w-75 h-full absolute z-40 left-[50%] translate-x-[-50%] overflow-hidden`}
+							className={`img-card hof-card rounded-3xl w-75 h-full absolute left-[50%] translate-x-[-50%] overflow-hidden`}
 						>
 							<img
 								src={`images/${image}`}

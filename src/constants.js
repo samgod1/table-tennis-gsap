@@ -22,6 +22,13 @@ const trulsMoregardhStats = [
 	{ title: "Serve", score: 8.5, image: "/images/serve.png" },
 ];
 
-const imagesForHof = ["china.jpg", "abc.jpg", "abc.jpg", "abc.jpg", "abc.jpg"];
+const imagesForHof = [
+	"china.jpg",
+	"ma-long-1.jpg",
+	"simon-gauzy.jpg",
+	"simon-gauzy-1.jpg",
+	"truls-moregardh.jpg",
+	"truls-moregardh-1.jpg",
+];
 
 export { maLongStats, simonGauzyStats, trulsMoregardhStats, imagesForHof };

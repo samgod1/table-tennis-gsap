@@ -10,6 +10,7 @@ import {
 	simonGauzyStats,
 	trulsMoregardhStats,
 } from "./constants.js";
+import Loading from "./components/Loading.jsx";
 
 gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(SplitText);
@@ -51,6 +52,7 @@ function MainContent() {
 				});
 
 				const introTl = gsap.timeline({
+					paused: true,
 					onComplete: () => {
 						gsap.set(document.body, { overflow: "" });
 						lenis?.start();
@@ -59,12 +61,17 @@ function MainContent() {
 				});
 
 				introTl
+					.to(".loading-container", {
+						autoAlpha: 0,
+						duration: 0.5,
+						ease: "power2.inOut",
+					})
 					.from(firstWord.chars, {
 						y: 100,
 						stagger: 0.075,
 						ease: "power1.out",
 						autoAlpha: 0,
-						delay: 0.5,
+						delay: 0.2,
 					})
 					.from(secondWord.chars, {
 						y: 100,
@@ -574,12 +581,29 @@ function MainContent() {
 						},
 					},
 				);
+
+				const playIntro = () => {
+					setTimeout(() => {
+						if (!introTl.isActive() && introTl.paused()) {
+							introTl.play();
+						}
+					}, 200);
+				};
+
+				if (document.readyState === "complete") {
+					playIntro();
+				} else {
+					window.addEventListener("load", playIntro, { once: true });
+				}
 			},
 		);
 	}, [lenis]);
 
 	return (
 		<>
+			<div className="loading-container fixed inset-0 z-[100] bg-olive-100 flex justify-center items-center pointer-events-none">
+				<Loading />
+			</div>
 			<div className="img-container w-full fixed h-[60vh] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] perspective-midrange z-2">
 				{/* Intro cards */}
 				<div className="img-card left rounded-3xl w-[200px] md:w-[300px] h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden">

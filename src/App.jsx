@@ -145,7 +145,6 @@ function MainContent() {
 						height: "100%",
 						immediateRender: false,
 						autoAlpha: 1,
-						overwrite: "auto",
 						ease: "power2.out",
 						scrollTrigger: {
 							trigger: ".first-section",
@@ -188,21 +187,33 @@ function MainContent() {
 						scrub: 1,
 						anticipatePin: 1,
 						immediateRender: false,
+						fastScrollEnd: true,
+						preventOverlaps: true,
 					},
 				});
 
 				//Card animation
-				firstSectionTl.to(".img-container", {
-					height: "100%",
-				});
-				firstSectionTl.to(
+				firstSectionTl.fromTo(
+					".img-container",
+					{ height: "60vh" },
+					{ height: "100%", immediateRender: false },
+				);
+				firstSectionTl.fromTo(
 					".img-container .img-card",
+					{
+						left: "50%",
+						width: smallCardWidth,
+						xPercent: -50,
+						borderRadius: "24px",
+						opacity: 1,
+					},
 					{
 						width: fullCardWidth,
 						left: "0",
 						xPercent: 0,
 						borderRadius: 0,
 						opacity: cardOpacity,
+						immediateRender: false,
 					},
 					"<",
 				);
@@ -291,7 +302,6 @@ function MainContent() {
 						height: "100%",
 						immediateRender: false,
 						autoAlpha: 1,
-						overwrite: "auto",
 						scrollTrigger: {
 							trigger: ".second-section",
 							start: "center bottom",
@@ -318,21 +328,33 @@ function MainContent() {
 						scrub: 1,
 						anticipatePin: 1,
 						immediateRender: false,
+						fastScrollEnd: true,
+						preventOverlaps: true,
 					},
 				});
 
-				secondSectionTl.to(".img-container", {
-					height: "100%",
-				});
+				secondSectionTl.fromTo(
+					".img-container",
+					{ height: "60vh" },
+					{ height: "100%", immediateRender: false },
+				);
 
-				secondSectionTl.to(
+				secondSectionTl.fromTo(
 					".img-container .img-card",
+					{
+						left: "50%",
+						width: smallCardWidth,
+						xPercent: -50,
+						borderRadius: "24px",
+						opacity: 1,
+					},
 					{
 						width: fullCardWidth,
 						left: "0",
 						xPercent: 0,
 						borderRadius: 0,
 						opacity: cardOpacity,
+						immediateRender: false,
 					},
 					"<",
 				);
@@ -418,7 +440,6 @@ function MainContent() {
 						transformStyle: "preserve-3d",
 						height: "100%",
 						immediateRender: false,
-						overwrite: "auto",
 						visibility: "visible",
 						scrollTrigger: {
 							trigger: ".third-section",
@@ -446,21 +467,33 @@ function MainContent() {
 						scrub: 1,
 						anticipatePin: 1,
 						immediateRender: false,
+						fastScrollEnd: true,
+						preventOverlaps: true,
 					},
 				});
 
-				thirdSectionTl.to(".img-container", {
-					height: "100%",
-				});
+				thirdSectionTl.fromTo(
+					".img-container",
+					{ height: "60vh" },
+					{ height: "100%", immediateRender: false },
+				);
 
-				thirdSectionTl.to(
+				thirdSectionTl.fromTo(
 					".img-container .img-card",
+					{
+						left: "50%",
+						width: smallCardWidth,
+						xPercent: -50,
+						borderRadius: "24px",
+						opacity: 1,
+					},
 					{
 						width: fullCardWidth,
 						left: "0",
 						xPercent: 0,
 						borderRadius: 0,
 						opacity: cardOpacity,
+						immediateRender: false,
 					},
 					"<",
 				);
@@ -686,68 +719,74 @@ function MainContent() {
 
 			{/* First section */}
 			<section className="first-section h-dvh flex items-center w-full inter-regular text-stone-700">
-				<div className="first-player w-full md:w-[50%] h-full ml-auto p-4 sm:p-5 md:p-6 lg:p-8 flex flex-col pt-4 sm:pt-6 md:pt-8 lg:pt-10 overflow-y-auto">
+				<div className="first-player w-full md:w-[50%] h-full ml-auto px-5 py-4 sm:px-8 sm:py-6 md:px-10 md:py-8 lg:px-12 border-box flex flex-col justify-center overflow-y-auto">
 					<div className="text-mask overflow-hidden shrink-0">
-						<h1 className="first-name text-4xl sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-6xl whitespace-nowrap font-bold text-stone-800  leading-normal  pt-2 pb-2 lg:pt-4 lg:pb-4">
+						<h1 className="anton-regular first-name text-3xl sm:text-4xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-stone-800 leading-none lg:leading-tight py-2 sm:py-3 lg:py-4">
 							MA LONG
 						</h1>
 					</div>
-					<div className="info flex-1">
-						<div className="text-mask overflow-hidden shrink-0">
-							<h2 className="first-info-title text-2xl md:text-3xl lg:text-4xl mb-1 md:mb-2 font-semibold">
-								Info
-							</h2>
-						</div>
-						<ul className="first-info flex gap-1 md:gap-2 flex-col text-sm md:text-base lg:text-lg">
-							<li className="first-nickname flex flex-col md:flex-row gap-2">
-								<div className="bg-gray-200 flex-1 rounded-sm p-1 lg:p-2 flex gap-2 items-center">
+					<div className="info flex-1 flex flex-col justify-center min-h-[40%]">
+						<ul className="first-info flex flex-1 gap-1.5 sm:gap-2 md:gap-3 flex-col text-sm sm:text-base lg:text-md justify-center">
+							<li className="first-nickname flex flex-col md:flex-row gap-1.5 sm:gap-2 md:gap-3">
+								<div className="bg-gray-200 flex-1 rounded-lg py-1.5 px-3 sm:py-2 sm:px-4 md:py-2.5 md:px-5 flex gap-2 items-start md:items-center">
 									<img
 										src="/images/dragon-logo.png"
 										alt="china flag"
-										className="w-4 h-4 lg:w-5 lg:h-5 rounded-full"
+										className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 rounded-full shrink-0 mt-0.5 md:mt-0"
 									/>
-									<span>
-										<span className="font-semibold">Nickname</span>: The Dragon
+									<span className="leading-tight">
+										<span className="font-semibold whitespace-nowrap">
+											Nickname:
+										</span>{" "}
+										The Dragon
 									</span>
 								</div>
-								<div className="first-height bg-gray-200 flex-1 rounded-sm p-1 lg:p-2 flex items-center gap-2">
+								<div className="first-height bg-gray-200 flex-1 rounded-lg py-1.5 px-3 sm:py-2 sm:px-4 md:py-2.5 md:px-5 flex items-start md:items-center gap-2">
 									<img
 										src="/images/height.png"
 										alt="height"
-										className="w-4 h-4 lg:w-5 lg:h-5"
+										className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 shrink-0 mt-0.5 md:mt-0"
 									/>
-									<span>
-										<span className="font-semibold">Height</span>: 5'9
+									<span className="leading-tight">
+										<span className="font-semibold whitespace-nowrap">
+											Height:
+										</span>{" "}
+										5'9
 									</span>
 								</div>
 							</li>
-							<li className="first-nationality bg-gray-200 rounded-sm p-1 lg:p-2 flex gap-2 items-center">
+							<li className="first-nationality bg-gray-200 rounded-lg py-1.5 px-3 sm:py-2 sm:px-4 md:py-2.5 md:px-5 flex gap-2 items-start md:items-center">
 								<img
 									src="/images/china-flag.jpg"
 									alt="china flag"
-									className="w-4 h-4 lg:w-5 lg:h-5 rounded-full"
+									className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 rounded-full shrink-0 mt-0.5 md:mt-0"
 								/>
-								<span>
-									<span className="font-semibold">Nationality</span>: China
+								<span className="leading-tight">
+									<span className="font-semibold whitespace-nowrap">
+										Nationality:
+									</span>{" "}
+									China
 								</span>
 							</li>
-							<li className="first-playing-style bg-gray-200 rounded-sm p-1 lg:p-2 flex items-center gap-2">
+							<li className="first-playing-style bg-gray-200 rounded-lg py-1.5 px-3 sm:py-2 sm:px-4 md:py-2.5 md:px-5 flex items-start md:items-center gap-2">
 								<img
 									src="/images/racket.png"
 									alt="china flag"
-									className="w-4 h-4 lg:w-5 lg:h-5"
+									className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 shrink-0 mt-0.5 md:mt-0"
 								/>
-								<span>
-									<span className="font-semibold">Playing style</span>:
+								<span className="leading-tight">
+									<span className="font-semibold whitespace-nowrap">
+										Playing style:
+									</span>{" "}
 									Right-handed, shakehand grip
 								</span>
 							</li>
 						</ul>
 					</div>
-					<div className="first-stats flex-1 flex flex-col">
+					<div className="first-stats flex-1 flex flex-col mt-3 sm:mt-4 md:mt-4 lg:mt-6 justify-center min-h-[40%]">
 						<div className="text-mask overflow-hidden shrink-0">
-							<h2 className="first-stats-title text-2xl md:text-3xl lg:text-4xl mb-1 md:mb-2 font-semibold">
-								Stats
+							<h2 className="first-stats-title text-xl sm:text-xl md:text-2xl lg:text-3xl anton-regular mb-1 sm:mb-2 md:mb-3 font-semibold">
+								<span className="border-x-4 p-2 border-stone-700">STATS</span>
 							</h2>
 						</div>
 						<ul className="flex flex-col justify-center gap-1 md:gap-2 grow">
@@ -756,17 +795,15 @@ function MainContent() {
 									key={i}
 									className="flex items-center gap-2 text-sm md:text-base lg:text-lg"
 								>
-									<span className="w-24 md:w-32 lg:w-40 flex items-center gap-2">
+									<span className="w-20 sm:w-24 md:w-32 lg:w-40 flex items-center gap-1 sm:gap-2 shrink-0">
 										<img
 											src={stats.image}
 											alt="china flag"
-											className="w-4 h-4 lg:w-5 lg:h-5"
+											className="w-4 h-4 lg:w-5 lg:h-5 shrink-0"
 										/>
-
 										<span>{stats.title}</span>
 									</span>
 									<ProgressBar score={stats.score} />
-									<span>{stats.score}/10</span>
 								</li>
 							))}
 						</ul>
@@ -776,67 +813,73 @@ function MainContent() {
 
 			{/*Second section */}
 			<section className="second-section h-dvh flex items-center ">
-				<div className="second-player w-full md:w-[50%] h-full ml-auto p-4 sm:p-5 md:p-6 lg:p-8 flex flex-col pt-4 sm:pt-6 md:pt-8 lg:pt-10 overflow-y-auto">
+				<div className="second-player w-full md:w-[50%] h-full ml-auto px-5 py-4 sm:px-8 sm:py-6 md:px-10 md:py-8 lg:px-12 border-box flex flex-col justify-center overflow-y-auto">
 					<div className="text-mask overflow-hidden shrink-0">
-						<h1 className="second-name text-4xl sm:text-5xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-6xl whitespace-nowrap font-bold text-stone-800  leading-normal  pt-2 pb-2 lg:pt-4 lg:pb-4">
+						<h1 className="second-name text-3xl sm:text-4xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-stone-800 leading-none lg:leading-tight py-2 sm:py-3 lg:py-4">
 							SIMON GAUZY
 						</h1>
 					</div>
-					<div className="info flex-1">
-						<div className="second-mask overflow-hidden shrink-0">
-							<h2 className="second-info-title text-2xl md:text-3xl lg:text-4xl mb-1 md:mb-2 font-semibold">
-								Info
-							</h2>
-						</div>
-						<ul className="second-info flex gap-1 md:gap-2 flex-col text-sm md:text-base lg:text-lg">
-							<li className="second-nickname flex flex-col md:flex-row gap-2">
-								<div className="bg-gray-200 flex-1 rounded-sm p-1 lg:p-2 flex gap-2 items-center">
+					<div className="info flex-1 flex flex-col justify-center min-h-[40%] sm:pr-4 md:pr-8 lg:pr-12">
+						<ul className="second-info flex flex-1 gap-1.5 sm:gap-2 md:gap-3 flex-col text-sm sm:text-base lg:text-lg justify-center">
+							<li className="second-nickname flex flex-col md:flex-row gap-1.5 sm:gap-2 md:gap-3">
+								<div className="bg-gray-200 flex-1 rounded-lg py-1.5 px-3 sm:py-2 sm:px-4 md:py-2.5 md:px-5 flex gap-2 items-start md:items-center">
 									<img
 										src="/images/magician.png"
 										alt="magician icon"
-										className="w-4 h-4 lg:w-5 lg:h-5 rounded"
+										className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 rounded shrink-0 mt-0.5 md:mt-0"
 									/>
-									<span>
-										<span className="font-semibold">Nickname</span>: Magician
+									<span className="leading-tight">
+										<span className="font-semibold whitespace-nowrap">
+											Nickname:
+										</span>{" "}
+										Magician
 									</span>
 								</div>
-								<div className="second-height bg-gray-200 flex-1 rounded-sm p-1 lg:p-2 flex items-center gap-2">
+								<div className="second-height bg-gray-200 flex-1 rounded-lg py-1.5 px-3 sm:py-2 sm:px-4 md:py-2.5 md:px-5 flex items-start md:items-center gap-2">
 									<img
 										src="/images/height.png"
 										alt="height"
-										className="w-4 h-4 lg:w-5 lg:h-5"
+										className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 shrink-0 mt-0.5 md:mt-0"
 									/>
-									<span>
-										<span className="font-semibold">Height</span>: 6'0
+									<span className="leading-tight">
+										<span className="font-semibold whitespace-nowrap">
+											Height:
+										</span>{" "}
+										6'0
 									</span>
 								</div>
 							</li>
-							<li className="second-nationality bg-gray-200 rounded-sm p-1 lg:p-2 flex gap-2 items-center">
+							<li className="second-nationality bg-gray-200 rounded-lg py-1.5 px-3 sm:py-2 sm:px-4 md:py-2.5 md:px-5 flex gap-2 items-start md:items-center">
 								<img
 									src="/images/france-flag.png"
 									alt="france flag"
-									className="w-4 h-4 lg:w-5 lg:h-5 rounded-full"
+									className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 rounded-full shrink-0 mt-0.5 md:mt-0"
 								/>
-								<span>
-									<span className="font-semibold">Nationality</span>: France
+								<span className="leading-tight">
+									<span className="font-semibold whitespace-nowrap">
+										Nationality:
+									</span>{" "}
+									France
 								</span>
 							</li>
-							<li className="second-playing-style bg-gray-200 rounded-sm p-1 lg:p-2 flex items-center gap-2">
+							<li className="second-playing-style bg-gray-200 rounded-lg py-1.5 px-3 sm:py-2 sm:px-4 md:py-2.5 md:px-5 flex items-start md:items-center gap-2">
 								<img
 									src="/images/racket.png"
 									alt="china flag"
-									className="w-4 h-4 lg:w-5 lg:h-5"
+									className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 shrink-0 mt-0.5 md:mt-0"
 								/>
-								<span>
-									<span className="font-semibold">Playing style</span>:
+								<span className="leading-tight">
+									<span className="font-semibold whitespace-nowrap">
+										Playing style:
+									</span>{" "}
 									Right-handed, shakehand grip
 								</span>
 							</li>
 						</ul>
 					</div>
-					<div className="second-stats flex-1 flex flex-col">
+					<div className="second-stats flex-1 flex flex-col mt-3 sm:mt-4 md:mt-4 lg:mt-6 justify-center min-h-[40%]">
 						<div className="text-mask overflow-hidden shrink-0">
-							<h2 className="second-stats-title text-2xl md:text-3xl lg:text-4xl mb-1 md:mb-2 font-semibold">
+							<h2 className="second-stats-title text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-1 sm:mb-2 md:mb-3 font-semibold">
 								Stats
 							</h2>
 						</div>
@@ -846,17 +889,18 @@ function MainContent() {
 									key={i}
 									className="flex items-center gap-2 text-sm md:text-base lg:text-lg"
 								>
-									<span className="w-24 md:w-32 lg:w-40 flex items-center gap-2">
+									<span className="w-20 sm:w-24 md:w-32 lg:w-40 flex items-center gap-1 sm:gap-2 shrink-0">
 										<img
 											src={stats.image}
 											alt="china flag"
-											className="w-4 h-4 lg:w-5 lg:h-5"
+											className="w-4 h-4 lg:w-5 lg:h-5 shrink-0"
 										/>
-
 										<span>{stats.title}</span>
 									</span>
 									<ProgressBar score={stats.score} />
-									<span>{stats.score}/10</span>
+									<span className="w-10 sm:w-12 shrink-0 text-right">
+										{stats.score}/10
+									</span>
 								</li>
 							))}
 						</ul>
@@ -866,68 +910,78 @@ function MainContent() {
 
 			{/* Third section */}
 			<section className="third-section h-dvh flex items-center">
-				<div className="third-player w-full md:w-[50%] h-full ml-auto p-4 sm:p-5 md:p-6 lg:p-8 flex flex-col pt-4 sm:pt-6 md:pt-8 lg:pt-10 overflow-y-auto">
+				<div className="third-player w-full md:w-[50%] h-full ml-auto px-5 py-4 sm:px-8 sm:py-6 md:px-10 md:py-8 lg:px-12 border-box flex flex-col justify-center overflow-y-auto">
 					<div className="text-mask overflow-hidden shrink-0">
-						<h1 className="third-name text-3xl sm:text-4xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl whitespace-nowrap font-bold text-stone-800  leading-normal  pt-2 pb-2 lg:pt-4 lg:pb-4">
+						<h1 className="third-name text-3xl sm:text-4xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-stone-800 leading-none lg:leading-tight py-2 sm:py-3 lg:py-4">
 							TRULS MOREGARDH
 						</h1>
 					</div>
-					<div className="info flex-1">
+					<div className="info flex-1 flex flex-col justify-center min-h-[40%] sm:pr-4 md:pr-8 lg:pr-12">
 						<div className="text-mask overflow-hidden shrink-0">
-							<h2 className="third-info-title text-2xl md:text-3xl lg:text-4xl mb-1 md:mb-2 font-semibold">
+							<h2 className="third-info-title text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-1 sm:mb-2 md:mb-3 font-semibold">
 								Info
 							</h2>
 						</div>
-						<ul className="third-info flex gap-1 md:gap-2 flex-col text-sm md:text-base lg:text-lg">
-							<li className="third-nickname flex flex-col md:flex-row gap-2">
-								<div className="bg-gray-200 flex-1 rounded-sm p-1 lg:p-2 flex gap-2 items-center">
+						<ul className="third-info flex flex-1 gap-1.5 sm:gap-2 md:gap-3 flex-col text-sm sm:text-base lg:text-lg justify-center">
+							<li className="third-nickname flex flex-col md:flex-row gap-1.5 sm:gap-2 md:gap-3">
+								<div className="bg-gray-200 flex-1 rounded-lg py-1.5 px-3 sm:py-2 sm:px-4 md:py-2.5 md:px-5 flex gap-2 items-start md:items-center">
 									<img
 										src="/images/wizard.png"
 										alt="china flag"
-										className="w-4 h-4 lg:w-5 lg:h-5"
+										className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 shrink-0 mt-0.5 md:mt-0"
 									/>
-									<span>
-										<span className="font-semibold">Nickname</span>: Swedish
-										Wizard
+									<span className="leading-tight">
+										<span className="font-semibold whitespace-nowrap">
+											Nickname:
+										</span>{" "}
+										Swedish Wizard
 									</span>
 								</div>
-								<div className="third-height bg-gray-200 flex-1 rounded-sm p-1 lg:p-2 flex items-center gap-2">
+								<div className="third-height bg-gray-200 flex-1 rounded-lg py-1.5 px-3 sm:py-2 sm:px-4 md:py-2.5 md:px-5 flex items-start md:items-center gap-2">
 									<img
 										src="/images/height.png"
 										alt="height"
-										className="w-4 h-4 lg:w-5 lg:h-5"
+										className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 shrink-0 mt-0.5 md:mt-0"
 									/>
-									<span>
-										<span className="font-semibold">Height</span>: 5'11
+									<span className="leading-tight">
+										<span className="font-semibold whitespace-nowrap">
+											Height:
+										</span>{" "}
+										5'11
 									</span>
 								</div>
 							</li>
-							<li className="third-nationality bg-gray-200 rounded-sm p-1 lg:p-2 flex gap-2 items-center">
+							<li className="third-nationality bg-gray-200 rounded-lg py-1.5 px-3 sm:py-2 sm:px-4 md:py-2.5 md:px-5 flex gap-2 items-start md:items-center">
 								<img
 									src="/images/sweden-flag.png"
 									alt="china flag"
-									className="w-4 h-4 lg:w-5 lg:h-5 rounded-full"
+									className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 rounded-full shrink-0 mt-0.5 md:mt-0"
 								/>
-								<span>
-									<span className="font-semibold">Nationality</span>: Sweden
+								<span className="leading-tight">
+									<span className="font-semibold whitespace-nowrap">
+										Nationality:
+									</span>{" "}
+									Sweden
 								</span>
 							</li>
-							<li className="third-playing-style bg-gray-200 rounded-sm p-1 lg:p-2 flex items-center gap-2">
+							<li className="third-playing-style bg-gray-200 rounded-lg py-1.5 px-3 sm:py-2 sm:px-4 md:py-2.5 md:px-5 flex items-start md:items-center gap-2">
 								<img
 									src="/images/racket.png"
 									alt="china flag"
-									className="w-4 h-4 lg:w-5 lg:h-5"
+									className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 shrink-0 mt-0.5 md:mt-0"
 								/>
-								<span>
-									<span className="font-semibold">Playing style</span>:
+								<span className="leading-tight">
+									<span className="font-semibold whitespace-nowrap">
+										Playing style:
+									</span>{" "}
 									Right-handed, shakehand grip
 								</span>
 							</li>
 						</ul>
 					</div>
-					<div className="third-stats flex-1 flex flex-col">
+					<div className="third-stats flex-1 flex flex-col mt-3 sm:mt-4 md:mt-4 lg:mt-6 justify-center min-h-[40%]">
 						<div className="text-mask overflow-hidden shrink-0">
-							<h2 className="third-stats-title text-2xl md:text-3xl lg:text-4xl mb-1 md:mb-2 font-semibold">
+							<h2 className="third-stats-title text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-1 sm:mb-2 md:mb-3 font-semibold">
 								Stats
 							</h2>
 						</div>
@@ -937,17 +991,18 @@ function MainContent() {
 									key={i}
 									className="flex items-center gap-2 text-sm md:text-base lg:text-lg"
 								>
-									<span className="w-24 md:w-32 lg:w-40 flex items-center gap-2">
+									<span className="w-20 sm:w-24 md:w-32 lg:w-40 flex items-center gap-1 sm:gap-2 shrink-0">
 										<img
 											src={stats.image}
 											alt="china flag"
-											className="w-4 h-4 lg:w-5 lg:h-5"
+											className="w-4 h-4 lg:w-5 lg:h-5 shrink-0"
 										/>
-
 										<span>{stats.title}</span>
 									</span>
 									<ProgressBar score={stats.score} />
-									<span>{stats.score}/10</span>
+									<span className="w-10 sm:w-12 shrink-0 text-right">
+										{stats.score}/10
+									</span>
 								</li>
 							))}
 						</ul>

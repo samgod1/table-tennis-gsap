@@ -11,8 +11,8 @@ const ProgressBar = ({ score }) => {
 		progressBarRef.current.style.width = `${widthPercent}%`;
 	}
 	return (
-		<div className="progress-bar-container grow h-2">
-			<div
+		<div className="progress-bar-container grow h-2 lg:h-3 2xl:h-4">
+				<div
 				className="progress-bar h-full bg-stone-800 origin-left rounded-xs"
 				ref={progressBarRef}
 			></div>

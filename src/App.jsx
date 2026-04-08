@@ -229,9 +229,9 @@ function MainContent() {
 
 				firstSectionTl.from(
 					[
-						".first-nickname",
-						".first-height",
 						".first-nationality",
+						".first-height",
+						".first-nickname",
 						".first-playing-style",
 					],
 					{
@@ -239,6 +239,14 @@ function MainContent() {
 						stagger: 0.5,
 					},
 				);
+
+				firstSectionTl.from(".first-ranking", {
+					yPercent: 200,
+				});
+
+				firstSectionTl.from(".first-ranking-no", {
+					autoAlpha: 0,
+				});
 
 				firstSectionTl.from(".first-stats-title", {
 					yPercent: 200,
@@ -719,94 +727,111 @@ function MainContent() {
 
 			{/* First section */}
 			<section className="first-section h-dvh flex items-center w-full inter-regular text-stone-700">
-				<div className="first-player w-full md:w-[50%] h-full ml-auto px-5 py-4 sm:px-8 sm:py-6 md:px-10 md:py-8 lg:px-12 border-box flex flex-col justify-center overflow-y-auto">
-					<div className="text-mask overflow-hidden shrink-0">
-						<h1 className="anton-regular first-name text-3xl sm:text-4xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-stone-800 leading-none lg:leading-tight py-2 sm:py-3 lg:py-4">
-							MA LONG
-						</h1>
-					</div>
-					<div className="info flex-1 flex flex-col justify-center min-h-[40%]">
-						<ul className="first-info flex flex-1 gap-1.5 sm:gap-2 md:gap-3 flex-col text-sm sm:text-base lg:text-md justify-center">
-							<li className="first-nickname flex flex-col md:flex-row gap-1.5 sm:gap-2 md:gap-3">
-								<div className="bg-gray-200 flex-1 rounded-lg py-1.5 px-3 sm:py-2 sm:px-4 md:py-2.5 md:px-5 flex gap-2 items-start md:items-center">
-									<img
-										src="/images/dragon-logo.png"
-										alt="china flag"
-										className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 rounded-full shrink-0 mt-0.5 md:mt-0"
-									/>
-									<span className="leading-tight">
-										<span className="font-semibold whitespace-nowrap">
-											Nickname:
-										</span>{" "}
-										The Dragon
-									</span>
-								</div>
-								<div className="first-height bg-gray-200 flex-1 rounded-lg py-1.5 px-3 sm:py-2 sm:px-4 md:py-2.5 md:px-5 flex items-start md:items-center gap-2">
-									<img
-										src="/images/height.png"
-										alt="height"
-										className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 shrink-0 mt-0.5 md:mt-0"
-									/>
-									<span className="leading-tight">
-										<span className="font-semibold whitespace-nowrap">
-											Height:
-										</span>{" "}
-										5'9
-									</span>
-								</div>
-							</li>
-							<li className="first-nationality bg-gray-200 rounded-lg py-1.5 px-3 sm:py-2 sm:px-4 md:py-2.5 md:px-5 flex gap-2 items-start md:items-center">
-								<img
-									src="/images/china-flag.jpg"
-									alt="china flag"
-									className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 rounded-full shrink-0 mt-0.5 md:mt-0"
-								/>
-								<span className="leading-tight">
-									<span className="font-semibold whitespace-nowrap">
-										Nationality:
-									</span>{" "}
-									China
-								</span>
-							</li>
-							<li className="first-playing-style bg-gray-200 rounded-lg py-1.5 px-3 sm:py-2 sm:px-4 md:py-2.5 md:px-5 flex items-start md:items-center gap-2">
-								<img
-									src="/images/racket.png"
-									alt="china flag"
-									className="w-4 h-4 sm:w-5 sm:h-5 lg:w-6 lg:h-6 shrink-0 mt-0.5 md:mt-0"
-								/>
-								<span className="leading-tight">
-									<span className="font-semibold whitespace-nowrap">
-										Playing style:
-									</span>{" "}
-									Right-handed, shakehand grip
-								</span>
-							</li>
-						</ul>
-					</div>
-					<div className="first-stats flex-1 flex flex-col mt-3 sm:mt-4 md:mt-4 lg:mt-6 justify-center min-h-[40%]">
-						<div className="text-mask overflow-hidden shrink-0">
-							<h2 className="first-stats-title text-xl sm:text-xl md:text-2xl lg:text-3xl anton-regular mb-1 sm:mb-2 md:mb-3 font-semibold">
-								<span className="border-x-4 p-2 border-stone-700">STATS</span>
-							</h2>
+				<div className="first-player w-full md:w-[50%] h-full ml-auto px-4 sm:px-6 md:px-8 border-box overflow-y-auto flex flex-col">
+					<div className="flex flex-col min-h-full justify-center py-4 sm:py-6 md:py-8">
+						<div className="text-mask overflow-hidden shrink-0 mb-4">
+							<h1 className="anton-regular first-name text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-stone-800 leading-none lg:leading-tight">
+								MA LONG
+							</h1>
 						</div>
-						<ul className="flex flex-col justify-center gap-1 md:gap-2 grow">
-							{maLongStats.map((stats, i) => (
-								<li
-									key={i}
-									className="flex items-center gap-2 text-sm md:text-base lg:text-lg"
-								>
-									<span className="w-20 sm:w-24 md:w-32 lg:w-40 flex items-center gap-1 sm:gap-2 shrink-0">
+						<div className="wrapper display flex flex-col flex-1 gap-2 sm:gap-3 lg:gap-4 md:gap-4 min-h-min">
+							<div className="info flex-1 flex flex-col justify-center min-h-min">
+								<ul className="first-info flex-1 gap-1.5 md:gap-2 lg:gap-3 text-xs sm:text-sm lg:text-base grid grid-rows-3 min-h-min">
+									<li className="flex flex-col md:flex-row md:gap-2 lg:gap-3">
+										<div className="first-nationality flex-1 bg-gray-200 rounded-lg py-1 px-2 sm:py-2 md:py-2.5 flex gap-2 items-center">
+											<img
+												src="/images/china-flag.jpg"
+												alt="china flag"
+												className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 rounded-full shrink-0"
+											/>
+											<span className="leading-tight">
+												<span className="font-semibold whitespace-nowrap">
+													Nationality:
+												</span>{" "}
+												China
+											</span>
+										</div>
+										<div className="first-height bg-gray-200 flex-1 rounded-lg py-1 px-2 sm:py-2 md:py-2.5 flex items-center gap-2">
+											<img
+												src="/images/height.png"
+												alt="height"
+												className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 shrink-0"
+											/>
+											<span className="leading-tight">
+												<span className="font-semibold whitespace-nowrap">
+													Height:
+												</span>{" "}
+												5'9
+											</span>
+										</div>
+									</li>
+									<li className="first-nickname bg-gray-200 rounded-lg py-1 px-2 sm:py-2 md:py-2.5 flex gap-2 items-center">
 										<img
-											src={stats.image}
+											src="/images/dragon-logo.png"
 											alt="china flag"
-											className="w-4 h-4 lg:w-5 lg:h-5 shrink-0"
+											className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 rounded-full shrink-0"
 										/>
-										<span>{stats.title}</span>
-									</span>
-									<ProgressBar score={stats.score} />
-								</li>
-							))}
-						</ul>
+										<span className="leading-tight">
+											<span className="font-semibold whitespace-nowrap">
+												Nickname:
+											</span>{" "}
+											The Dragon
+										</span>
+									</li>
+									<li className="first-playing-style bg-gray-200 rounded-lg py-1 px-2 sm:py-2 md:py-2.5 flex items-center gap-2">
+										<img
+											src="/images/racket.png"
+											alt="china flag"
+											className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 shrink-0"
+										/>
+										<span className="leading-tight">
+											<span className="font-semibold whitespace-nowrap">
+												Playing style:
+											</span>{" "}
+											Right-handed, shakehand grip
+										</span>
+									</li>
+								</ul>
+							</div>
+							<div className="flex flex-col h-auto shrink-0 justify-center">
+								<div className="text-mask overflow-hidden shrink-0">
+									<div className="first-ranking border-l-4 px-2 py-0 border-stone-700 text-xs sm:text-sm md:text-lg lg:text-xl anton-regular mb-0.5 sm:mb-1 md:mb-1 font-semibold">
+										Highest WR
+									</div>
+								</div>
+								<div className="first-ranking-no font-semibold text-lg sm:text-xl md:text-2xl">
+									# 1
+								</div>
+							</div>
+							<div className="first-stats flex-1 flex flex-col justify-center min-h-min shrink-0">
+								<div className="text-mask overflow-hidden shrink-0 sm:mb-1 lg:mb-2">
+									<h2 className="first-stats-title border-l-4 px-2 py-0 border-stone-700 text-xs sm:text-sm md:text-lg lg:text-xl anton-regular mb-1 sm:mb-1 font-semibold">
+										STATS
+									</h2>
+								</div>
+								<ul className="flex flex-col gap-1 sm:gap-1.5 md:gap-2 grow justify-between min-h-min">
+									{maLongStats.map((stats, i) => (
+										<li
+											key={i}
+											className="flex items-center gap-2 text-xs sm:text-sm md:text-base lg:text-lg shrink-0"
+										>
+											<span className="w-16 sm:w-20 lg:w-24 flex items-center gap-1 sm:gap-2 shrink-0">
+												<img
+													src={stats.image}
+													alt="china flag"
+													className="w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 shrink-0"
+												/>
+												<span className="font-semibold">{stats.title}</span>
+											</span>
+											<ProgressBar score={stats.score} />
+											<span className="w-12 sm:w-14 md:w-15 lg:w-16 text-right">
+												{stats.score}/10
+											</span>
+										</li>
+									))}
+								</ul>
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>

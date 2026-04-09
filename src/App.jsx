@@ -706,21 +706,21 @@ function MainContent() {
 			</div>
 			<div className="img-container w-full fixed h-[60vh] max-[900px]:h-[40vh] top-[50%] left-[50%] perspective-midrange z-2">
 				{/* Intro cards */}
-				<div className="img-card left w-[250px] max-[900px]:w-[210px] rounded-3xl h-[80%] absolute z-5 left-[50%] top-[50%] overflow-hidden">
+				<div className="img-card left aspect-[2/3] w-auto rounded-3xl h-[80%] absolute z-5 left-[50%] top-[50%] overflow-hidden">
 					<img
 						src="images/simon-gauzy.avif"
 						alt="simon-gauzy"
 						className="w-full h-full object-cover"
 					/>
 				</div>
-				<div className="img-card middle w-[300px] max-[900px]:w-[240px] rounded-3xl h-full absolute z-10 left-[50%] top-[50%] overflow-hidden">
+				<div className="img-card middle aspect-[2/3] w-auto rounded-3xl h-full absolute z-10 left-[50%] top-[50%] overflow-hidden">
 					<img
 						src="images/ma-long.webp"
 						alt="ma-long"
 						className="w-full h-full object-cover"
 					/>
 				</div>
-				<div className="img-card right w-[250px] max-[900px]:w-[210px] rounded-3xl h-[80%] absolute z-5 left-[50%] top-[50%] overflow-hidden">
+				<div className="img-card right aspect-[2/3] w-auto rounded-3xl h-[80%] absolute z-5 left-[50%] top-[50%] overflow-hidden">
 					<img
 						src="images/truls-moregardh.webp"
 						alt="truls-moregardh"
@@ -729,21 +729,21 @@ function MainContent() {
 				</div>
 
 				{/* Popping img card */}
-				<div className="img-card pop-card first-pop w-[300px] max-[900px]:w-[240px] rounded-3xl h-full absolute z-5 left-[50%] top-[50%] overflow-hidden invisible">
+				<div className="img-card pop-card first-pop aspect-[2/3] w-auto rounded-3xl h-full absolute z-5 left-[50%] top-[50%] overflow-hidden invisible">
 					<img
 						src="images/ma-long.jpg"
 						alt="ma-long"
 						className="w-full h-full object-cover"
 					/>
 				</div>
-				<div className="img-card pop-card second-pop w-[300px] max-[900px]:w-[240px] rounded-3xl h-full absolute z-5 left-[50%] top-[50%] overflow-hidden invisible">
+				<div className="img-card pop-card second-pop aspect-[2/3] w-auto rounded-3xl h-full absolute z-5 left-[50%] top-[50%] overflow-hidden invisible">
 					<img
 						src="images/simon-gauzy.avif"
 						alt="simon-gauzy"
 						className="w-full h-full object-cover"
 					/>
 				</div>
-				<div className="img-card pop-card third-pop w-[300px] max-[900px]:w-[240px] rounded-3xl h-full absolute z-5 left-[50%] top-[50%] overflow-hidden invisible">
+				<div className="img-card pop-card third-pop aspect-[2/3] w-auto rounded-3xl h-full absolute z-5 left-[50%] top-[50%] overflow-hidden invisible">
 					<img
 						src="images/truls-moregardh-1.webp"
 						alt="truls moregardh"

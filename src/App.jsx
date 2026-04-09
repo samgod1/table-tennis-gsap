@@ -35,11 +35,33 @@ function MainContent() {
 			(context) => {
 				let { isDesktop, isTablet, isMobile } = context.conditions;
 
-				let spreadX = isDesktop ? 250 : isTablet ? 170 : 110;
 				let popSpreadX = isDesktop ? 250 : isTablet ? 170 : 100;
 				let fullCardWidth = isMobile ? "100%" : "50%";
 				let cardOpacity = isMobile ? 0.25 : 1;
-				let smallCardWidth = isMobile ? "200px" : "300px";
+
+				const middleCard =
+					document.querySelector(".img-card.middle") ||
+					document.querySelector(".img-card");
+				const leftCard = document.querySelector(".img-card.left");
+
+				let midCardWidthPx = middleCard
+					? middleCard.getBoundingClientRect().width
+					: isMobile
+						? 200
+						: 300;
+				let sideCardWidthPx = leftCard
+					? leftCard.getBoundingClientRect().width
+					: isMobile
+						? 180
+						: 250;
+
+				let spreadX = midCardWidthPx / 2 + sideCardWidthPx * 0.3;
+
+				let smallCardWidth = midCardWidthPx + "px";
+				let smallCardHeight = middleCard
+					? middleCard.getBoundingClientRect().height + "px"
+					: "auto";
+
 				let scrollEnd = isMobile ? 1200 : 2000;
 				let hofSpread = isDesktop ? 350 : isTablet ? 350 : 240;
 				const split = SplitText.create(".hero-text", { type: "words" });
@@ -49,6 +71,17 @@ function MainContent() {
 
 				gsap.set([".left", ".right"], {
 					autoAlpha: 0,
+				});
+				gsap.set(".img-card", {
+					xPercent: -50,
+					yPercent: -50,
+				});
+				gsap.set([".hof-img-container"], {
+					yPercent: -50,
+				});
+				gsap.set(".img-container", {
+					xPercent: -50,
+					yPercent: -50,
 				});
 
 				const introTl = gsap.timeline({
@@ -119,6 +152,7 @@ function MainContent() {
 				gsap.to([".left", ".right"], {
 					x: 0,
 					rotate: 0,
+					autoAlpha: 0,
 					immediateRender: false,
 					scrollTrigger: {
 						trigger: ".hero",
@@ -154,7 +188,7 @@ function MainContent() {
 								gsap.set(".first-pop", {
 									x: 0,
 									rotateY: 0,
-									height: "80%",
+									height: "",
 									zIndex: 5,
 								});
 							},
@@ -199,16 +233,18 @@ function MainContent() {
 					{ height: "100%", immediateRender: false },
 				);
 				firstSectionTl.fromTo(
-					".img-container .img-card",
+					".img-container .middle, .img-container .pop-card",
 					{
 						left: "50%",
 						width: smallCardWidth,
+						height: "100%",
 						xPercent: -50,
 						borderRadius: "24px",
 						opacity: 1,
 					},
 					{
 						width: fullCardWidth,
+						height: "100%",
 						left: "0",
 						xPercent: 0,
 						borderRadius: 0,
@@ -283,10 +319,11 @@ function MainContent() {
 					height: "60vh",
 				});
 				firstSectionTl.to(
-					".img-container .img-card",
+					".img-container .middle, .img-container .pop-card",
 					{
 						left: "50%",
 						width: smallCardWidth,
+						height: "100%",
 						xPercent: -50,
 						borderRadius: "24px",
 						opacity: 1,
@@ -318,7 +355,7 @@ function MainContent() {
 								gsap.set(".second-pop", {
 									x: 0,
 									rotateY: 0,
-									height: "80%",
+									height: "",
 									zIndex: 5,
 								});
 							},
@@ -348,16 +385,18 @@ function MainContent() {
 				);
 
 				secondSectionTl.fromTo(
-					".img-container .img-card",
+					".img-container .middle, .img-container .pop-card",
 					{
 						left: "50%",
 						width: smallCardWidth,
+						height: "100%",
 						xPercent: -50,
 						borderRadius: "24px",
 						opacity: 1,
 					},
 					{
 						width: fullCardWidth,
+						height: "100%",
 						left: "0",
 						xPercent: 0,
 						borderRadius: 0,
@@ -431,10 +470,11 @@ function MainContent() {
 					height: "60vh",
 				});
 				secondSectionTl.to(
-					".img-container .img-card",
+					".img-container .middle, .img-container .pop-card",
 					{
 						left: "50%",
 						width: smallCardWidth,
+						height: "100%",
 						xPercent: -50,
 						borderRadius: "24px",
 						opacity: 1,
@@ -465,7 +505,7 @@ function MainContent() {
 								gsap.set(".third-pop", {
 									x: 0,
 									rotateY: 0,
-									height: "80%",
+									height: "",
 									zIndex: 5,
 								});
 							},
@@ -495,16 +535,18 @@ function MainContent() {
 				);
 
 				thirdSectionTl.fromTo(
-					".img-container .img-card",
+					".img-container .middle, .img-container .pop-card",
 					{
 						left: "50%",
 						width: smallCardWidth,
+						height: "100%",
 						xPercent: -50,
 						borderRadius: "24px",
 						opacity: 1,
 					},
 					{
 						width: fullCardWidth,
+						height: "100%",
 						left: "0",
 						xPercent: 0,
 						borderRadius: 0,
@@ -578,10 +620,11 @@ function MainContent() {
 					height: "60vh",
 				});
 				thirdSectionTl.to(
-					".img-container .img-card",
+					".img-container .middle, .img-container .pop-card",
 					{
 						left: "50%",
 						width: smallCardWidth,
+						height: "100%",
 						xPercent: -50,
 						borderRadius: "24px",
 						opacity: 1,
@@ -658,26 +701,26 @@ function MainContent() {
 
 	return (
 		<>
-			<div className="loading-container fixed inset-0 z-[100] bg-olive-100 flex justify-center items-center pointer-events-none">
+			<div className="loading-container fixed inset-0 z-100 bg-olive-100 flex justify-center items-center pointer-events-none">
 				<Loading />
 			</div>
-			<div className="img-container w-full fixed h-[60vh] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] perspective-midrange z-2">
+			<div className="img-container w-full fixed h-[60vh] max-[900px]:h-[40vh] top-[50%] left-[50%] perspective-midrange z-2">
 				{/* Intro cards */}
-				<div className="img-card left rounded-3xl w-[200px] md:w-[300px] h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden">
+				<div className="img-card left w-[250px] max-[900px]:w-[210px] rounded-3xl h-[80%] absolute z-5 left-[50%] top-[50%] overflow-hidden">
 					<img
 						src="images/simon-gauzy.avif"
 						alt="simon-gauzy"
 						className="w-full h-full object-cover"
 					/>
 				</div>
-				<div className="img-card middle rounded-3xl w-[200px] md:w-[300px] h-full absolute z-10 left-[50%] bottom-0 translate-x-[-50%] overflow-hidden">
+				<div className="img-card middle w-[300px] max-[900px]:w-[240px] rounded-3xl h-full absolute z-10 left-[50%] top-[50%] overflow-hidden">
 					<img
 						src="images/ma-long.webp"
 						alt="ma-long"
 						className="w-full h-full object-cover"
 					/>
 				</div>
-				<div className="img-card right rounded-3xl w-[200px] md:w-[300px] h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden ">
+				<div className="img-card right w-[250px] max-[900px]:w-[210px] rounded-3xl h-[80%] absolute z-5 left-[50%] top-[50%] overflow-hidden">
 					<img
 						src="images/truls-moregardh.webp"
 						alt="truls-moregardh"
@@ -686,21 +729,21 @@ function MainContent() {
 				</div>
 
 				{/* Popping img card */}
-				<div className="img-card pop-card first-pop rounded-3xl w-[200px] md:w-[300px] h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden invisible">
+				<div className="img-card pop-card first-pop w-[300px] max-[900px]:w-[240px] rounded-3xl h-full absolute z-5 left-[50%] top-[50%] overflow-hidden invisible">
 					<img
 						src="images/ma-long.jpg"
 						alt="ma-long"
 						className="w-full h-full object-cover"
 					/>
 				</div>
-				<div className="img-card pop-card second-pop rounded-3xl w-[200px] md:w-[300px] h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden invisible">
+				<div className="img-card pop-card second-pop w-[300px] max-[900px]:w-[240px] rounded-3xl h-full absolute z-5 left-[50%] top-[50%] overflow-hidden invisible">
 					<img
 						src="images/simon-gauzy.avif"
 						alt="simon-gauzy"
 						className="w-full h-full object-cover"
 					/>
 				</div>
-				<div className="img-card pop-card third-pop rounded-3xl w-[200px] md:w-[300px] h-[80%] absolute z-5 left-[50%] top-[50%] bottom-0 translate-x-[-50%] translate-y-[-50%] overflow-hidden invisible">
+				<div className="img-card pop-card third-pop w-[300px] max-[900px]:w-[240px] rounded-3xl h-full absolute z-5 left-[50%] top-[50%] overflow-hidden invisible">
 					<img
 						src="images/truls-moregardh-1.webp"
 						alt="truls moregardh"
@@ -708,12 +751,12 @@ function MainContent() {
 					/>
 				</div>
 			</div>
-			<div className="hof-img-container fixed top-[50%] translate-y-[-50%] h-[60vh] z-50 w-full perspective-midrange">
+			<div className="hof-img-container fixed top-[50%] h-[60vh] z-50 w-full perspective-midrange">
 				{/* Hall of fame cards */}
 				{imagesForHof.map((image) => {
 					return (
 						<div
-							className={`img-card hof-card rounded-3xl w-[200px] md:w-[300px] h-full absolute z-5 left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] overflow-hidden`}
+							className={`img-card hof-card rounded-3xl w-50 md:w-75 h-full absolute z-5 left-[50%] top-[50%] overflow-hidden`}
 						>
 							<img
 								src={`images/${image}`}

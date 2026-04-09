@@ -14,3 +14,12 @@
 	font-weight: 500;
 	font-style: normal;
 }
+
+.img-card {
+	aspect-ratio: 900/1360;
+}
+
+.img-card.left,
+.img-card.right {
+	aspect-ratio: 1100/1360;
+}

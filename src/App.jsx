@@ -756,7 +756,8 @@ function MainContent() {
 				{imagesForHof.map((image) => {
 					return (
 						<div
-							className={`img-card hof-card rounded-3xl w-50 md:w-75 h-full absolute z-5 left-[50%] top-[50%] overflow-hidden`}
+							key={image} // Adding key here just in case!
+							className={`img-card hof-card aspect-[2/3] w-auto rounded-3xl h-full absolute z-5 left-[50%] top-[50%] overflow-hidden`}
 						>
 							<img
 								src={`images/${image}`}

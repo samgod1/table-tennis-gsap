@@ -698,6 +698,14 @@ function MainContent() {
 					}
 				});
 
+				tl.from(
+					".achievement-title",
+					{
+						yPercent: 200,
+					},
+					"<",
+				);
+
 				gsap.fromTo(
 					".hof-card",
 					{
@@ -1155,9 +1163,11 @@ function MainContent() {
 			{/* Hall of fame section */}
 			<section className="hall-of-fame h-dvh flex flex-col md:flex-row items-center justify-center md:justify-center relative">
 				<div className="flex-1 flex justify-center items-center text-center px-4 md:px-8 z-10 absolute top-[15%] md:relative md:top-auto w-full md:w-auto overflow-hidden shrink-0">
-					<h1 className="achievement-title text-3xl sm:text-4xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-stone-800 leading-normal">
-						ACHIEVEMENTS
-					</h1>
+					<span className="text-mask overflow-hidden">
+						<h1 className="achievement-title anton-regular text-3xl sm:text-4xl md:text-3xl lg:text-4xl xl:text-5xl 2xl:text-6xl font-bold text-stone-800 leading-normal">
+							ACHIEVEMENTS
+						</h1>
+					</span>
 				</div>
 				<div className="hidden md:block w-16 md:w-75"></div>
 				<div className="hidden md:block flex-1"></div>

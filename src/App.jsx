@@ -29,15 +29,24 @@ function MainContent() {
 		mm.add(
 			{
 				isDesktop: "(min-width: 1024px)",
-				isTablet: "(min-width: 768px) and (max-width: 1023px)",
+				isTablet: "(min-width: 901px) and (max-width: 1023px)",
+				isSmallTablet: "(min-width: 768px) and (max-width: 900px)",
 				isMobile: "(max-width: 767px)",
 			},
 			(context) => {
-				let { isDesktop, isTablet, isMobile } = context.conditions;
+				let { isDesktop, isTablet, isSmallTablet, isMobile } =
+					context.conditions;
 
-				let popSpreadX = isDesktop ? 250 : isTablet ? 170 : 100;
+				let popSpreadX = isDesktop
+					? 250
+					: isTablet
+						? 170
+						: isSmallTablet
+							? 140
+							: 100;
 				let fullCardWidth = isMobile ? "100%" : "50%";
 				let cardOpacity = isMobile ? 0.25 : 1;
+				let containerStartHeight = isSmallTablet || isMobile ? "45vh" : "60vh";
 
 				const middleCard =
 					document.querySelector(".img-card.middle") ||
@@ -63,7 +72,17 @@ function MainContent() {
 					: "auto";
 
 				let scrollEnd = isMobile ? 1200 : 2000;
-				let hofSpread = isDesktop ? 350 : isTablet ? 350 : 240;
+
+				const hofCardElement = document.querySelector(".hof-card");
+				let hofCardWidthPx = hofCardElement
+					? hofCardElement.getBoundingClientRect().width
+					: isMobile
+						? 200
+						: 300;
+				let calculatedGap = window.innerWidth * 0.05; // 5vw spacing
+				let clampGap = Math.min(Math.max(calculatedGap, 20), 60); // Min 20px, Max 60px gap
+				let hofSpread = hofCardWidthPx + clampGap;
+
 				const split = SplitText.create(".hero-text", { type: "words" });
 				const firstWord = SplitText.create(split.words[0], { type: "chars" });
 				const secondWord = SplitText.create(split.words[1], { type: "chars" });
@@ -233,7 +252,7 @@ function MainContent() {
 				//Card animation
 				firstSectionTl.fromTo(
 					".img-container",
-					{ height: "60vh" },
+					{ height: containerStartHeight },
 					{ height: "100%", immediateRender: false },
 				);
 				firstSectionTl.fromTo(
@@ -320,7 +339,7 @@ function MainContent() {
 				});
 
 				firstSectionTl.to(".img-container", {
-					height: "60vh",
+					height: containerStartHeight,
 				});
 				firstSectionTl.to(
 					".img-container .middle, .img-container .pop-card",
@@ -389,7 +408,7 @@ function MainContent() {
 
 				secondSectionTl.fromTo(
 					".img-container",
-					{ height: "60vh" },
+					{ height: containerStartHeight },
 					{ height: "100%", immediateRender: false },
 				);
 
@@ -476,7 +495,7 @@ function MainContent() {
 				});
 
 				secondSectionTl.to(".img-container", {
-					height: "60vh",
+					height: containerStartHeight,
 				});
 				secondSectionTl.to(
 					".img-container .middle, .img-container .pop-card",
@@ -545,7 +564,7 @@ function MainContent() {
 
 				thirdSectionTl.fromTo(
 					".img-container",
-					{ height: "60vh" },
+					{ height: containerStartHeight },
 					{ height: "100%", immediateRender: false },
 				);
 
@@ -632,7 +651,7 @@ function MainContent() {
 				});
 
 				thirdSectionTl.to(".img-container", {
-					height: "60vh",
+					height: containerStartHeight,
 				});
 				thirdSectionTl.to(
 					".img-container .middle, .img-container .pop-card",
@@ -719,7 +738,7 @@ function MainContent() {
 			<div className="loading-container fixed inset-0 z-100 bg-olive-100 flex justify-center items-center pointer-events-none">
 				<Loading />
 			</div>
-			<div className="img-container w-full fixed h-[60vh] max-[900px]:h-[40vh] top-[50%] left-[50%] perspective-midrange z-2">
+			<div className="img-container w-full fixed h-[60vh] max-[900px]:h-[45vh] top-[50%] left-[50%] perspective-midrange z-2">
 				{/* Intro cards */}
 				<div className="img-card left aspect-[2/3] w-auto rounded-3xl h-[80%] absolute z-5 left-[50%] top-[50%] overflow-hidden">
 					<img
@@ -766,7 +785,7 @@ function MainContent() {
 					/>
 				</div>
 			</div>
-			<div className="hof-img-container fixed top-[50%] h-[60vh] z-50 w-full perspective-midrange">
+			<div className="hof-img-container fixed top-[50%] h-[60vh] max-[900px]:h-[45vh] z-50 w-full perspective-midrange">
 				{/* Hall of fame cards */}
 				{imagesForHof.map((image) => {
 					return (
@@ -805,7 +824,7 @@ function MainContent() {
 				<div className="first-player w-full md:w-[50%] h-full ml-auto px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 2xl:px-20 border-box overflow-y-auto flex flex-col">
 					<div className="flex flex-col min-h-full justify-center py-2 md:py-4 lg:py-5 2xl:py-6 [@media(max-height:1000px)]:py-4 [@media(max-height:850px)]:py-2 [@media(max-height:700px)]:py-2">
 						<div className="text-mask overflow-hidden shrink-0 mb-3 md:mb-4 lg:mb-5 2xl:mb-6 [@media(max-height:1000px)]:mb-3 [@media(max-height:850px)]:mb-2">
-							<h1 className="anton-regular first-name text-[3rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] xl:text-[6.5rem] 2xl:text-[7rem] [@media(max-height:1000px)]:text-[5rem] [@media(max-height:850px)]:text-[4rem] [@media(max-height:700px)]:text-[3.5rem] font-bold text-stone-800 leading-none">
+							<h1 className="anton-regular first-name text-[2.25rem] sm:text-[3rem] max-[900px]:!text-[2.5rem] max-[640px]:!text-[2rem] md:text-[5rem] lg:text-[6rem] xl:text-[6.5rem] 2xl:text-[7rem] [@media(max-height:1000px)]:text-[5rem] [@media(max-height:850px)]:text-[4rem] [@media(max-height:700px)]:text-[3.5rem] font-bold text-stone-800 leading-none">
 								MA LONG
 							</h1>
 						</div>
@@ -916,7 +935,7 @@ function MainContent() {
 				<div className="second-player w-full md:w-[50%] h-full ml-auto px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 2xl:px-20 border-box overflow-y-auto flex flex-col">
 					<div className="flex flex-col min-h-full justify-center py-2 md:py-4 lg:py-5 2xl:py-6 [@media(max-height:1000px)]:py-4 [@media(max-height:850px)]:py-2 [@media(max-height:700px)]:py-2">
 						<div className="text-mask overflow-hidden shrink-0 mb-3 md:mb-4 lg:mb-5 2xl:mb-6 [@media(max-height:1000px)]:mb-3 [@media(max-height:850px)]:mb-2">
-							<h1 className="anton-regular second-name text-[3rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] xl:text-[6.5rem] 2xl:text-[7rem] [@media(max-height:1000px)]:text-[5rem] [@media(max-height:850px)]:text-[4rem] [@media(max-height:700px)]:text-[3.5rem] font-bold text-stone-800 leading-none">
+							<h1 className="anton-regular second-name text-[2.25rem] sm:text-[3rem] max-[900px]:!text-[2.5rem] max-[640px]:!text-[2rem] md:text-[5rem] lg:text-[6rem] xl:text-[6.5rem] 2xl:text-[7rem] [@media(max-height:1000px)]:text-[5rem] [@media(max-height:850px)]:text-[4rem] [@media(max-height:700px)]:text-[3.5rem] font-bold text-stone-800 leading-none">
 								SIMON GAUZY
 							</h1>
 						</div>
@@ -1027,7 +1046,7 @@ function MainContent() {
 				<div className="third-player w-full md:w-[50%] h-full ml-auto px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 2xl:px-20 border-box overflow-y-auto flex flex-col">
 					<div className="flex flex-col min-h-full justify-center py-2 md:py-4 lg:py-5 2xl:py-6 [@media(max-height:1000px)]:py-4 [@media(max-height:850px)]:py-2 [@media(max-height:700px)]:py-2">
 						<div className="text-mask overflow-hidden shrink-0 mb-3 md:mb-4 lg:mb-5 2xl:mb-6 [@media(max-height:1000px)]:mb-3 [@media(max-height:850px)]:mb-2">
-							<h1 className="anton-regular third-name text-[3rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] xl:text-[6.5rem] 2xl:text-[7rem] [@media(max-height:1000px)]:text-[5rem] [@media(max-height:850px)]:text-[4rem] [@media(max-height:700px)]:text-[3.5rem] font-bold text-stone-800 leading-none">
+							<h1 className="anton-regular third-name text-[2.25rem] sm:text-[3rem] max-[900px]:!text-[2.5rem] max-[640px]:!text-[2rem] md:text-[5rem] lg:text-[6rem] xl:text-[6.5rem] 2xl:text-[7rem] [@media(max-height:1000px)]:text-[5rem] [@media(max-height:850px)]:text-[4rem] [@media(max-height:700px)]:text-[3.5rem] font-bold text-stone-800 leading-none">
 								TRULS MOREGARDH
 							</h1>
 						</div>

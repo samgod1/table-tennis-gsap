@@ -166,14 +166,17 @@ function MainContent() {
 				gsap.fromTo(
 					".first-pop",
 					{
+						zIndex: 20,
 						x: popSpreadX,
 						rotateY: 70,
 						autoAlpha: 0,
+						scale: 0.7,
 					},
 					{
 						zIndex: 20,
 						rotateY: 0,
 						x: 0,
+						scale: 1,
 						duration: 0.5,
 						transformStyle: "preserve-3d",
 						height: "100%",
@@ -188,6 +191,7 @@ function MainContent() {
 								gsap.set(".first-pop", {
 									x: 0,
 									rotateY: 0,
+									scale: 1,
 									height: "",
 									zIndex: 5,
 								});
@@ -334,19 +338,23 @@ function MainContent() {
 				gsap.fromTo(
 					".second-pop",
 					{
+						zIndex: 30,
 						x: -popSpreadX,
 						rotateY: -70,
 						autoAlpha: 0,
+						scale: 0.7,
 					},
 					{
 						zIndex: 30,
 						rotateY: 0,
 						x: 0,
+						scale: 1,
 						duration: 0.5,
 						transformStyle: "preserve-3d",
 						height: "100%",
 						immediateRender: false,
 						autoAlpha: 1,
+						ease: "power2.out",
 						scrollTrigger: {
 							trigger: ".second-section",
 							start: "center bottom",
@@ -355,6 +363,7 @@ function MainContent() {
 								gsap.set(".second-pop", {
 									x: 0,
 									rotateY: 0,
+									scale: 1,
 									height: "",
 									zIndex: 5,
 								});
@@ -485,18 +494,23 @@ function MainContent() {
 				gsap.fromTo(
 					".third-pop",
 					{
+						zIndex: 40,
 						x: popSpreadX,
-						rotateY: 50,
+						rotateY: 70,
+						autoAlpha: 0,
+						scale: 0.7,
 					},
 					{
-						x: 0,
-						rotateY: 0,
 						zIndex: 40,
-						duration: 0.2,
+						rotateY: 0,
+						x: 0,
+						scale: 1,
+						duration: 0.5,
 						transformStyle: "preserve-3d",
 						height: "100%",
 						immediateRender: false,
-						visibility: "visible",
+						autoAlpha: 1,
+						ease: "power2.out",
 						scrollTrigger: {
 							trigger: ".third-section",
 							start: "center bottom",
@@ -505,6 +519,7 @@ function MainContent() {
 								gsap.set(".third-pop", {
 									x: 0,
 									rotateY: 0,
+									scale: 1,
 									height: "",
 									zIndex: 5,
 								});
@@ -787,22 +802,22 @@ function MainContent() {
 
 			{/* First section */}
 			<section className="first-section h-dvh flex items-center w-full inter-regular text-stone-700">
-				<div className="first-player w-full md:w-[50%] h-full ml-auto px-4 sm:px-6 md:px-8 border-box overflow-y-auto flex flex-col">
-					<div className="flex flex-col min-h-full justify-center py-4 sm:py-6 md:py-8">
-						<div className="text-mask overflow-hidden shrink-0 mb-2 md:mb-4 [@media(max-height:800px)]:mb-2">
-							<h1 className="anton-regular first-name text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl [@media(max-height:800px)]:text-5xl [@media(max-height:600px)]:text-4xl font-bold text-stone-800 leading-none lg:leading-tight">
+				<div className="first-player w-full md:w-[50%] h-full ml-auto px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 2xl:px-20 border-box overflow-y-auto flex flex-col">
+					<div className="flex flex-col min-h-full justify-center py-2 md:py-4 lg:py-5 2xl:py-6 [@media(max-height:1000px)]:py-4 [@media(max-height:850px)]:py-2 [@media(max-height:700px)]:py-2">
+						<div className="text-mask overflow-hidden shrink-0 mb-3 md:mb-4 lg:mb-5 2xl:mb-6 [@media(max-height:1000px)]:mb-3 [@media(max-height:850px)]:mb-2">
+							<h1 className="anton-regular first-name text-[3rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] xl:text-[6.5rem] 2xl:text-[7rem] [@media(max-height:1000px)]:text-[5rem] [@media(max-height:850px)]:text-[4rem] [@media(max-height:700px)]:text-[3.5rem] font-bold text-stone-800 leading-none">
 								MA LONG
 							</h1>
 						</div>
-						<div className="wrapper display flex flex-col gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10 h-auto sm:my-2 md:my-4 [@media(max-height:800px)]:gap-3 [@media(max-height:600px)]:gap-2">
+						<div className="wrapper display flex flex-col gap-3 sm:gap-4 md:gap-4 lg:gap-5 2xl:gap-6 h-auto sm:my-2 md:my-3 lg:my-4 2xl:my-5 [@media(max-height:1000px)]:gap-4 [@media(max-height:1000px)]:my-2 [@media(max-height:850px)]:gap-3 [@media(max-height:700px)]:gap-2">
 							<div className="info flex flex-col justify-center h-auto">
-								<ul className="first-info gap-1.5 sm:gap-2 md:gap-3 lg:gap-4 xl:gap-5 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl [@media(max-height:800px)]:text-base [@media(max-height:600px)]:text-sm grid grid-rows-3 h-auto lg:mb-2 xl:mb-4">
-									<li className="flex flex-col md:flex-row md:gap-2 lg:gap-4">
-										<div className="first-nationality flex-1 bg-gray-200 rounded-lg py-1 px-2 sm:py-1.5 sm:px-3 md:py-2 md:px-4 lg:py-3 xl:py-4 flex gap-1.5 lg:gap-3 items-center [@media(max-height:800px)]:py-1.5 [@media(max-height:800px)]:px-3">
+								<ul className="first-info gap-2 sm:gap-3 md:gap-3 lg:gap-4 xl:gap-4 2xl:gap-5 text-sm sm:text-base md:text-base lg:text-lg xl:text-lg 2xl:text-xl [@media(max-height:1000px)]:gap-2 [@media(max-height:1000px)]:text-base [@media(max-height:850px)]:text-sm [@media(max-height:700px)]:gap-1.5 grid grid-rows-3 h-auto lg:mb-3 xl:mb-4 2xl:mb-5 [@media(max-height:1000px)]:mb-2">
+									<li className="flex flex-col md:flex-row md:gap-3 lg:gap-4 xl:gap-4 2xl:gap-4 [@media(max-height:1000px)]:gap-2">
+										<div className="first-nationality flex-1 bg-gray-200 rounded-lg py-2 px-3 sm:py-2.5 sm:px-4 md:py-2.5 md:px-4 lg:py-2.5 lg:px-4 xl:py-2.5 xl:px-4 2xl:py-3 2xl:px-5 flex gap-2 lg:gap-3 items-center">
 											<img
 												src="/images/china-flag.jpg"
 												alt="china flag"
-												className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 rounded-full shrink-0"
+												className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 [@media(max-height:1000px)]:w-4 [@media(max-height:1000px)]:h-4 [@media(max-height:850px)]:w-3.5 [@media(max-height:850px)]:h-3.5 rounded-full shrink-0"
 											/>
 											<span className="leading-tight">
 												<span className="font-semibold whitespace-nowrap">
@@ -811,11 +826,11 @@ function MainContent() {
 												China
 											</span>
 										</div>
-										<div className="first-height bg-gray-200 flex-1 rounded-lg py-1 px-2 sm:py-1.5 sm:px-3 md:py-2 md:px-4 lg:py-3 xl:py-4 flex items-center gap-1.5 lg:gap-3 [@media(max-height:800px)]:py-1.5 [@media(max-height:800px)]:px-3">
+										<div className="first-height bg-gray-200 flex-1 rounded-lg py-2 px-3 sm:py-2.5 sm:px-4 md:py-2.5 md:px-4 lg:py-2.5 lg:px-4 xl:py-2.5 xl:px-4 2xl:py-3 2xl:px-5 flex items-center gap-2 lg:gap-3">
 											<img
 												src="/images/height.png"
 												alt="height"
-												className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 shrink-0"
+												className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 [@media(max-height:1000px)]:w-4 [@media(max-height:1000px)]:h-4 [@media(max-height:850px)]:w-3.5 [@media(max-height:850px)]:h-3.5 shrink-0"
 											/>
 											<span className="leading-tight">
 												<span className="font-semibold whitespace-nowrap">
@@ -825,11 +840,11 @@ function MainContent() {
 											</span>
 										</div>
 									</li>
-									<li className="first-nickname bg-gray-200 rounded-lg py-1 px-2 sm:py-1.5 sm:px-3 md:py-2 md:px-4 lg:py-3 xl:py-4 flex gap-1.5 lg:gap-3 items-center [@media(max-height:800px)]:py-1.5 [@media(max-height:800px)]:px-3">
+									<li className="first-nickname bg-gray-200 rounded-lg py-2 px-3 sm:py-2.5 sm:px-4 md:py-2.5 md:px-4 lg:py-2.5 lg:px-4 xl:py-2.5 xl:px-4 2xl:py-3 2xl:px-5 flex gap-2 lg:gap-3 items-center">
 										<img
 											src="/images/dragon-logo.png"
 											alt="china flag"
-											className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 rounded-full shrink-0"
+											className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 [@media(max-height:1000px)]:w-4 [@media(max-height:1000px)]:h-4 [@media(max-height:850px)]:w-3.5 [@media(max-height:850px)]:h-3.5 rounded-full shrink-0"
 										/>
 										<span className="leading-tight">
 											<span className="font-semibold whitespace-nowrap">
@@ -838,11 +853,11 @@ function MainContent() {
 											The Dragon
 										</span>
 									</li>
-									<li className="first-playing-style bg-gray-200 rounded-lg py-1 px-2 sm:py-1.5 sm:px-3 md:py-2 md:px-4 lg:py-3 xl:py-4 flex items-center gap-1.5 lg:gap-3 [@media(max-height:800px)]:py-1.5 [@media(max-height:800px)]:px-3">
+									<li className="first-playing-style bg-gray-200 rounded-lg py-2 px-3 sm:py-2.5 sm:px-4 md:py-2.5 md:px-4 lg:py-2.5 lg:px-4 xl:py-2.5 xl:px-4 2xl:py-3 2xl:px-5 flex items-center gap-2 lg:gap-3">
 										<img
 											src="/images/racket.png"
 											alt="china flag"
-											className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 shrink-0"
+											className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 [@media(max-height:1000px)]:w-4 [@media(max-height:1000px)]:h-4 [@media(max-height:850px)]:w-3.5 [@media(max-height:850px)]:h-3.5 shrink-0"
 										/>
 										<span className="leading-tight">
 											<span className="font-semibold whitespace-nowrap">
@@ -853,38 +868,38 @@ function MainContent() {
 									</li>
 								</ul>
 							</div>
-							<div className="flex flex-col h-auto shrink-0 justify-center mt-1 lg:mt-4 [@media(max-height:800px)]:mt-1">
+							<div className="flex flex-col h-auto shrink-0 justify-center mt-2 lg:mt-3 2xl:mt-4 [@media(max-height:1000px)]:mt-2">
 								<div className="text-mask overflow-hidden shrink-0">
-									<div className="first-ranking border-l-4 px-2 py-0 border-stone-700 text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl [@media(max-height:800px)]:text-lg anton-regular mb-1 sm:mb-2 md:mb-3 font-semibold">
+									<div className="first-ranking border-l-4 px-3 py-0 border-stone-800 text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl [@media(max-height:1000px)]:text-2xl [@media(max-height:850px)]:text-xl [@media(max-height:700px)]:text-lg anton-regular mb-1 sm:mb-2 md:mb-2 lg:mb-2 2xl:mb-3 font-semibold">
 										Highest WR
 									</div>
 								</div>
-								<div className="first-ranking-no font-semibold text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl [@media(max-height:800px)]:text-4xl [@media(max-height:600px)]:text-3xl">
+								<div className="first-ranking-no font-semibold text-[3rem] sm:text-[4rem] md:text-[4rem] lg:text-[4.5rem] xl:text-[5rem] 2xl:text-[5.5rem] [@media(max-height:1000px)]:text-[4rem] [@media(max-height:850px)]:text-[3.5rem] [@media(max-height:700px)]:text-[3rem] leading-none">
 									# 1
 								</div>
 							</div>
-							<div className="first-stats flex flex-col justify-center h-auto shrink-0 mt-3 sm:mt-5 lg:mt-8 [@media(max-height:800px)]:mt-3">
-								<div className="text-mask overflow-hidden shrink-0 mb-2 sm:mb-3 md:mb-4 lg:mb-6 [@media(max-height:800px)]:mb-2">
-									<h2 className="first-stats-title border-l-4 px-2 py-0 border-stone-700 text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl [@media(max-height:800px)]:text-lg anton-regular font-semibold">
+							<div className="first-stats flex flex-col justify-center h-auto shrink-0 mt-2 sm:mt-3 lg:mt-4 2xl:mt-5 [@media(max-height:1000px)]:mt-2">
+								<div className="text-mask overflow-hidden shrink-0 mb-2 sm:mb-3 md:mb-3 lg:mb-4 2xl:mb-5 [@media(max-height:1000px)]:mb-2 [@media(max-height:850px)]:mb-1.5">
+									<h2 className="first-stats-title border-l-4 px-3 py-0 border-stone-800 text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-3xl 2xl:text-4xl [@media(max-height:1000px)]:text-2xl [@media(max-height:850px)]:text-xl [@media(max-height:700px)]:text-lg anton-regular font-semibold">
 										STATS
 									</h2>
 								</div>
-								<ul className="flex flex-col gap-2 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6 h-auto [@media(max-height:800px)]:gap-2">
+								<ul className="flex flex-col gap-2 sm:gap-3 md:gap-3 lg:gap-3 xl:gap-4 2xl:gap-4 h-auto [@media(max-height:1000px)]:gap-2 [@media(max-height:850px)]:gap-1.5 [@media(max-height:700px)]:gap-1">
 									{maLongStats.map((stats, i) => (
 										<li
 											key={i}
-											className="flex items-center gap-2 sm:gap-3 md:gap-4 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl [@media(max-height:800px)]:text-sm shrink-0"
+											className="flex items-center gap-2 sm:gap-3 md:gap-3 2xl:gap-4 text-sm sm:text-base md:text-base lg:text-lg xl:text-lg 2xl:text-xl [@media(max-height:1000px)]:text-base [@media(max-height:850px)]:text-sm [@media(max-height:700px)]:text-xs shrink-0"
 										>
-											<span className="w-16 sm:w-20 md:w-24 lg:w-32 xl:w-40 flex items-center gap-1 sm:gap-2 shrink-0">
+											<span className="w-16 sm:w-20 md:w-24 lg:w-32 xl:w-32 2xl:w-36 [@media(max-height:1000px)]:w-24 [@media(max-height:850px)]:w-20 [@media(max-height:700px)]:w-16 flex items-center gap-1.5 sm:gap-2 2xl:gap-2 shrink-0">
 												<img
 													src={stats.image}
 													alt="china flag"
-													className="w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 shrink-0"
+													className="w-3.5 h-3.5 md:w-5 md:h-5 lg:w-6 lg:h-6 xl:w-7 xl:h-7 2xl:w-8 2xl:h-8 [@media(max-height:1000px)]:w-5 [@media(max-height:1000px)]:h-5 [@media(max-height:850px)]:w-4 [@media(max-height:850px)]:h-4 shrink-0"
 												/>
 												<span className="font-semibold">{stats.title}</span>
 											</span>
 											<ProgressBar score={stats.score} />
-											<span className="w-12 sm:w-14 md:w-16 lg:w-20 xl:w-24 text-right">
+											<span className="w-12 sm:w-14 md:w-16 lg:w-20 xl:w-24 2xl:w-28 text-right">
 												{stats.score}/10
 											</span>
 										</li>
@@ -898,22 +913,22 @@ function MainContent() {
 
 			{/* Second section */}
 			<section className="second-section h-dvh flex items-center w-full inter-regular text-stone-700">
-				<div className="second-player w-full md:w-[50%] h-full ml-auto px-4 sm:px-6 md:px-8 border-box overflow-y-auto flex flex-col">
-					<div className="flex flex-col min-h-full justify-center py-4 sm:py-6 md:py-8">
-						<div className="text-mask overflow-hidden shrink-0 mb-2 md:mb-4 [@media(max-height:800px)]:mb-2">
-							<h1 className="anton-regular second-name text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl [@media(max-height:800px)]:text-5xl [@media(max-height:600px)]:text-4xl font-bold text-stone-800 leading-none lg:leading-tight">
+				<div className="second-player w-full md:w-[50%] h-full ml-auto px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 2xl:px-20 border-box overflow-y-auto flex flex-col">
+					<div className="flex flex-col min-h-full justify-center py-2 md:py-4 lg:py-5 2xl:py-6 [@media(max-height:1000px)]:py-4 [@media(max-height:850px)]:py-2 [@media(max-height:700px)]:py-2">
+						<div className="text-mask overflow-hidden shrink-0 mb-3 md:mb-4 lg:mb-5 2xl:mb-6 [@media(max-height:1000px)]:mb-3 [@media(max-height:850px)]:mb-2">
+							<h1 className="anton-regular second-name text-[3rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] xl:text-[6.5rem] 2xl:text-[7rem] [@media(max-height:1000px)]:text-[5rem] [@media(max-height:850px)]:text-[4rem] [@media(max-height:700px)]:text-[3.5rem] font-bold text-stone-800 leading-none">
 								SIMON GAUZY
 							</h1>
 						</div>
-						<div className="wrapper display flex flex-col gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10 h-auto sm:my-2 md:my-4 [@media(max-height:800px)]:gap-3 [@media(max-height:600px)]:gap-2">
+						<div className="wrapper display flex flex-col gap-3 sm:gap-4 md:gap-4 lg:gap-5 2xl:gap-6 h-auto sm:my-2 md:my-3 lg:my-4 2xl:my-5 [@media(max-height:1000px)]:gap-4 [@media(max-height:1000px)]:my-2 [@media(max-height:850px)]:gap-3 [@media(max-height:700px)]:gap-2">
 							<div className="info flex flex-col justify-center h-auto">
-								<ul className="second-info gap-1.5 sm:gap-2 md:gap-3 lg:gap-4 xl:gap-5 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl [@media(max-height:800px)]:text-base [@media(max-height:600px)]:text-sm grid grid-rows-3 h-auto lg:mb-2 xl:mb-4">
-									<li className="flex flex-col md:flex-row md:gap-2 lg:gap-4">
-										<div className="second-nationality flex-1 bg-gray-200 rounded-lg py-1 px-2 sm:py-1.5 sm:px-3 md:py-2 md:px-4 lg:py-3 xl:py-4 flex gap-1.5 lg:gap-3 items-center [@media(max-height:800px)]:py-1.5 [@media(max-height:800px)]:px-3">
+								<ul className="second-info gap-2 sm:gap-3 md:gap-3 lg:gap-4 xl:gap-4 2xl:gap-5 text-sm sm:text-base md:text-base lg:text-lg xl:text-lg 2xl:text-xl [@media(max-height:1000px)]:gap-2 [@media(max-height:1000px)]:text-base [@media(max-height:850px)]:text-sm [@media(max-height:700px)]:gap-1.5 grid grid-rows-3 h-auto lg:mb-3 xl:mb-4 2xl:mb-5 [@media(max-height:1000px)]:mb-2">
+									<li className="flex flex-col md:flex-row md:gap-3 lg:gap-4 xl:gap-4 2xl:gap-4 [@media(max-height:1000px)]:gap-2">
+										<div className="second-nationality flex-1 bg-gray-200 rounded-lg py-2 px-3 sm:py-2.5 sm:px-4 md:py-2.5 md:px-4 lg:py-2.5 lg:px-4 xl:py-2.5 xl:px-4 2xl:py-3 2xl:px-5 flex gap-2 lg:gap-3 items-center">
 											<img
 												src="/images/france-flag.png"
 												alt="france flag"
-												className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 rounded-full shrink-0"
+												className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 [@media(max-height:1000px)]:w-4 [@media(max-height:1000px)]:h-4 [@media(max-height:850px)]:w-3.5 [@media(max-height:850px)]:h-3.5 rounded-full shrink-0"
 											/>
 											<span className="leading-tight">
 												<span className="font-semibold whitespace-nowrap">
@@ -922,11 +937,11 @@ function MainContent() {
 												France
 											</span>
 										</div>
-										<div className="second-height bg-gray-200 flex-1 rounded-lg py-1 px-2 sm:py-1.5 sm:px-3 md:py-2 md:px-4 lg:py-3 xl:py-4 flex items-center gap-1.5 lg:gap-3 [@media(max-height:800px)]:py-1.5 [@media(max-height:800px)]:px-3">
+										<div className="second-height bg-gray-200 flex-1 rounded-lg py-2 px-3 sm:py-2.5 sm:px-4 md:py-2.5 md:px-4 lg:py-2.5 lg:px-4 xl:py-2.5 xl:px-4 2xl:py-3 2xl:px-5 flex items-center gap-2 lg:gap-3">
 											<img
 												src="/images/height.png"
 												alt="height"
-												className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 shrink-0"
+												className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 [@media(max-height:1000px)]:w-4 [@media(max-height:1000px)]:h-4 [@media(max-height:850px)]:w-3.5 [@media(max-height:850px)]:h-3.5 shrink-0"
 											/>
 											<span className="leading-tight">
 												<span className="font-semibold whitespace-nowrap">
@@ -936,11 +951,11 @@ function MainContent() {
 											</span>
 										</div>
 									</li>
-									<li className="second-nickname bg-gray-200 rounded-lg py-1 px-2 sm:py-1.5 sm:px-3 md:py-2 md:px-4 lg:py-3 xl:py-4 flex gap-1.5 lg:gap-3 items-center [@media(max-height:800px)]:py-1.5 [@media(max-height:800px)]:px-3">
+									<li className="second-nickname bg-gray-200 rounded-lg py-2 px-3 sm:py-2.5 sm:px-4 md:py-2.5 md:px-4 lg:py-2.5 lg:px-4 xl:py-2.5 xl:px-4 2xl:py-3 2xl:px-5 flex gap-2 lg:gap-3 items-center">
 										<img
 											src="/images/magician.png"
 											alt="magician icon"
-											className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 rounded-full shrink-0"
+											className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 [@media(max-height:1000px)]:w-4 [@media(max-height:1000px)]:h-4 [@media(max-height:850px)]:w-3.5 [@media(max-height:850px)]:h-3.5 rounded-full shrink-0"
 										/>
 										<span className="leading-tight">
 											<span className="font-semibold whitespace-nowrap">
@@ -949,11 +964,11 @@ function MainContent() {
 											Magician
 										</span>
 									</li>
-									<li className="second-playing-style bg-gray-200 rounded-lg py-1 px-2 sm:py-1.5 sm:px-3 md:py-2 md:px-4 lg:py-3 xl:py-4 flex items-center gap-1.5 lg:gap-3 [@media(max-height:800px)]:py-1.5 [@media(max-height:800px)]:px-3">
+									<li className="second-playing-style bg-gray-200 rounded-lg py-2 px-3 sm:py-2.5 sm:px-4 md:py-2.5 md:px-4 lg:py-2.5 lg:px-4 xl:py-2.5 xl:px-4 2xl:py-3 2xl:px-5 flex items-center gap-2 lg:gap-3">
 										<img
 											src="/images/racket.png"
 											alt="racket"
-											className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 shrink-0"
+											className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 [@media(max-height:1000px)]:w-4 [@media(max-height:1000px)]:h-4 [@media(max-height:850px)]:w-3.5 [@media(max-height:850px)]:h-3.5 shrink-0"
 										/>
 										<span className="leading-tight">
 											<span className="font-semibold whitespace-nowrap">
@@ -964,38 +979,38 @@ function MainContent() {
 									</li>
 								</ul>
 							</div>
-							<div className="flex flex-col h-auto shrink-0 justify-center mt-1 lg:mt-4 [@media(max-height:800px)]:mt-1">
+							<div className="flex flex-col h-auto shrink-0 justify-center">
 								<div className="text-mask overflow-hidden shrink-0">
-									<div className="second-ranking border-l-4 px-2 py-0 border-stone-700 text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl [@media(max-height:800px)]:text-lg anton-regular mb-1 sm:mb-2 md:mb-3 font-semibold">
+									<div className="second-ranking border-l-4 px-2 py-0 border-stone-700 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-2xl 2xl:text-3xl [@media(max-height:1000px)]:text-xl [@media(max-height:850px)]:text-lg [@media(max-height:700px)]:text-base anton-regular mb-1 sm:mb-2 md:mb-3 font-semibold">
 										Highest WR
 									</div>
 								</div>
-								<div className="second-ranking-no font-semibold text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl [@media(max-height:800px)]:text-4xl [@media(max-height:600px)]:text-3xl">
+								<div className="second-ranking-no font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[5rem] 2xl:text-[6rem] [@media(max-height:1000px)]:text-[4.5rem] [@media(max-height:850px)]:text-[3.5rem] [@media(max-height:700px)]:text-[3rem] leading-none">
 									# 1
 								</div>
 							</div>
-							<div className="second-stats flex flex-col justify-center h-auto shrink-0 mt-3 sm:mt-5 lg:mt-8 [@media(max-height:800px)]:mt-3">
-								<div className="text-mask overflow-hidden shrink-0 mb-2 sm:mb-3 md:mb-4 lg:mb-6 [@media(max-height:800px)]:mb-2">
-									<h2 className="second-stats-title border-l-4 px-2 py-0 border-stone-700 text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl [@media(max-height:800px)]:text-lg anton-regular font-semibold">
+							<div className="second-stats flex flex-col justify-center h-auto shrink-0 mt-2 sm:mt-3 lg:mt-5 2xl:mt-6 [@media(max-height:1000px)]:mt-3 [@media(max-height:850px)]:mt-2">
+								<div className="text-mask overflow-hidden shrink-0 mb-2 sm:mb-2 md:mb-3 lg:mb-4 2xl:mb-5 [@media(max-height:1000px)]:mb-3 [@media(max-height:850px)]:mb-2">
+									<h2 className="second-stats-title border-l-4 px-2 py-0 border-stone-700 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-2xl 2xl:text-3xl [@media(max-height:1000px)]:text-xl [@media(max-height:850px)]:text-lg [@media(max-height:700px)]:text-base anton-regular font-semibold">
 										STATS
 									</h2>
 								</div>
-								<ul className="flex flex-col gap-2 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6 h-auto [@media(max-height:800px)]:gap-2">
+								<ul className="flex flex-col gap-2 sm:gap-3 md:gap-3 lg:gap-3 xl:gap-4 2xl:gap-4 h-auto [@media(max-height:1000px)]:gap-2 [@media(max-height:850px)]:gap-1.5 [@media(max-height:700px)]:gap-1">
 									{simonGauzyStats.map((stats, i) => (
 										<li
 											key={i}
-											className="flex items-center gap-2 sm:gap-3 md:gap-4 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl [@media(max-height:800px)]:text-sm shrink-0"
+											className="flex items-center gap-2 sm:gap-3 md:gap-3 2xl:gap-4 text-sm sm:text-base md:text-base lg:text-lg xl:text-lg 2xl:text-xl [@media(max-height:1000px)]:text-base [@media(max-height:850px)]:text-sm [@media(max-height:700px)]:text-xs shrink-0"
 										>
-											<span className="w-16 sm:w-20 md:w-24 lg:w-32 xl:w-40 flex items-center gap-1 sm:gap-2 shrink-0">
+											<span className="w-16 sm:w-20 md:w-24 lg:w-32 xl:w-32 2xl:w-36 [@media(max-height:1000px)]:w-24 [@media(max-height:850px)]:w-20 [@media(max-height:700px)]:w-16 flex items-center gap-1.5 sm:gap-2 2xl:gap-2 shrink-0">
 												<img
 													src={stats.image}
 													alt="stat icon"
-													className="w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 shrink-0"
+													className="w-3.5 h-3.5 md:w-5 md:h-5 lg:w-6 lg:h-6 xl:w-7 xl:h-7 2xl:w-8 2xl:h-8 [@media(max-height:1000px)]:w-5 [@media(max-height:1000px)]:h-5 [@media(max-height:850px)]:w-4 [@media(max-height:850px)]:h-4 shrink-0"
 												/>
 												<span className="font-semibold">{stats.title}</span>
 											</span>
 											<ProgressBar score={stats.score} />
-											<span className="w-12 sm:w-14 md:w-16 lg:w-20 xl:w-24 text-right">
+											<span className="w-12 sm:w-14 md:w-16 lg:w-20 xl:w-24 2xl:w-28 text-right">
 												{stats.score}/10
 											</span>
 										</li>
@@ -1009,22 +1024,22 @@ function MainContent() {
 
 			{/* Third section */}
 			<section className="third-section h-dvh flex items-center w-full inter-regular text-stone-700">
-				<div className="third-player w-full md:w-[50%] h-full ml-auto px-4 sm:px-6 md:px-8 border-box overflow-y-auto flex flex-col">
-					<div className="flex flex-col min-h-full justify-center py-4 sm:py-6 md:py-8">
-						<div className="text-mask overflow-hidden shrink-0 mb-2 md:mb-4 [@media(max-height:800px)]:mb-2">
-							<h1 className="anton-regular third-name text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl [@media(max-height:800px)]:text-5xl [@media(max-height:600px)]:text-4xl font-bold text-stone-800 leading-none lg:leading-tight">
+				<div className="third-player w-full md:w-[50%] h-full ml-auto px-4 sm:px-6 md:px-10 lg:px-12 xl:px-16 2xl:px-20 border-box overflow-y-auto flex flex-col">
+					<div className="flex flex-col min-h-full justify-center py-2 md:py-4 lg:py-5 2xl:py-6 [@media(max-height:1000px)]:py-4 [@media(max-height:850px)]:py-2 [@media(max-height:700px)]:py-2">
+						<div className="text-mask overflow-hidden shrink-0 mb-3 md:mb-4 lg:mb-5 2xl:mb-6 [@media(max-height:1000px)]:mb-3 [@media(max-height:850px)]:mb-2">
+							<h1 className="anton-regular third-name text-[3rem] sm:text-[4rem] md:text-[5rem] lg:text-[6rem] xl:text-[6.5rem] 2xl:text-[7rem] [@media(max-height:1000px)]:text-[5rem] [@media(max-height:850px)]:text-[4rem] [@media(max-height:700px)]:text-[3.5rem] font-bold text-stone-800 leading-none">
 								TRULS MOREGARDH
 							</h1>
 						</div>
-						<div className="wrapper display flex flex-col gap-3 sm:gap-4 md:gap-6 lg:gap-8 xl:gap-10 h-auto sm:my-2 md:my-4 [@media(max-height:800px)]:gap-3 [@media(max-height:600px)]:gap-2">
+						<div className="wrapper display flex flex-col gap-3 sm:gap-4 md:gap-4 lg:gap-5 2xl:gap-6 h-auto sm:my-2 md:my-3 lg:my-4 2xl:my-5 [@media(max-height:1000px)]:gap-4 [@media(max-height:1000px)]:my-2 [@media(max-height:850px)]:gap-3 [@media(max-height:700px)]:gap-2">
 							<div className="info flex flex-col justify-center h-auto">
-								<ul className="third-info gap-1.5 sm:gap-2 md:gap-3 lg:gap-4 xl:gap-5 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl [@media(max-height:800px)]:text-base [@media(max-height:600px)]:text-sm grid grid-rows-3 h-auto lg:mb-2 xl:mb-4">
-									<li className="flex flex-col md:flex-row md:gap-2 lg:gap-4">
-										<div className="third-nationality flex-1 bg-gray-200 rounded-lg py-1 px-2 sm:py-1.5 sm:px-3 md:py-2 md:px-4 lg:py-3 xl:py-4 flex gap-1.5 lg:gap-3 items-center [@media(max-height:800px)]:py-1.5 [@media(max-height:800px)]:px-3">
+								<ul className="third-info gap-2 sm:gap-3 md:gap-3 lg:gap-4 xl:gap-4 2xl:gap-5 text-sm sm:text-base md:text-base lg:text-lg xl:text-lg 2xl:text-xl [@media(max-height:1000px)]:gap-2 [@media(max-height:1000px)]:text-base [@media(max-height:850px)]:text-sm [@media(max-height:700px)]:gap-1.5 grid grid-rows-3 h-auto lg:mb-3 xl:mb-4 2xl:mb-5 [@media(max-height:1000px)]:mb-2">
+									<li className="flex flex-col md:flex-row md:gap-3 lg:gap-4 xl:gap-4 2xl:gap-4 [@media(max-height:1000px)]:gap-2">
+										<div className="third-nationality flex-1 bg-gray-200 rounded-lg py-2 px-3 sm:py-2.5 sm:px-4 md:py-2.5 md:px-4 lg:py-2.5 lg:px-4 xl:py-2.5 xl:px-4 2xl:py-3 2xl:px-5 flex gap-2 lg:gap-3 items-center">
 											<img
 												src="/images/sweden-flag.png"
 												alt="sweden flag"
-												className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 rounded-full shrink-0"
+												className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 [@media(max-height:1000px)]:w-4 [@media(max-height:1000px)]:h-4 [@media(max-height:850px)]:w-3.5 [@media(max-height:850px)]:h-3.5 rounded-full shrink-0"
 											/>
 											<span className="leading-tight">
 												<span className="font-semibold whitespace-nowrap">
@@ -1033,11 +1048,11 @@ function MainContent() {
 												Sweden
 											</span>
 										</div>
-										<div className="third-height bg-gray-200 flex-1 rounded-lg py-1 px-2 sm:py-1.5 sm:px-3 md:py-2 md:px-4 lg:py-3 xl:py-4 flex items-center gap-1.5 lg:gap-3 [@media(max-height:800px)]:py-1.5 [@media(max-height:800px)]:px-3">
+										<div className="third-height bg-gray-200 flex-1 rounded-lg py-2 px-3 sm:py-2.5 sm:px-4 md:py-2.5 md:px-4 lg:py-2.5 lg:px-4 xl:py-2.5 xl:px-4 2xl:py-3 2xl:px-5 flex items-center gap-2 lg:gap-3">
 											<img
 												src="/images/height.png"
 												alt="height"
-												className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 shrink-0"
+												className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 [@media(max-height:1000px)]:w-4 [@media(max-height:1000px)]:h-4 [@media(max-height:850px)]:w-3.5 [@media(max-height:850px)]:h-3.5 shrink-0"
 											/>
 											<span className="leading-tight">
 												<span className="font-semibold whitespace-nowrap">
@@ -1047,11 +1062,11 @@ function MainContent() {
 											</span>
 										</div>
 									</li>
-									<li className="third-nickname bg-gray-200 rounded-lg py-1 px-2 sm:py-1.5 sm:px-3 md:py-2 md:px-4 lg:py-3 xl:py-4 flex gap-1.5 lg:gap-3 items-center [@media(max-height:800px)]:py-1.5 [@media(max-height:800px)]:px-3">
+									<li className="third-nickname bg-gray-200 rounded-lg py-2 px-3 sm:py-2.5 sm:px-4 md:py-2.5 md:px-4 lg:py-2.5 lg:px-4 xl:py-2.5 xl:px-4 2xl:py-3 2xl:px-5 flex gap-2 lg:gap-3 items-center">
 										<img
 											src="/images/wizard.png"
 											alt="wizard icon"
-											className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 rounded-full shrink-0"
+											className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 [@media(max-height:1000px)]:w-4 [@media(max-height:1000px)]:h-4 [@media(max-height:850px)]:w-3.5 [@media(max-height:850px)]:h-3.5 rounded-full shrink-0"
 										/>
 										<span className="leading-tight">
 											<span className="font-semibold whitespace-nowrap">
@@ -1060,11 +1075,11 @@ function MainContent() {
 											Swedish Wizard
 										</span>
 									</li>
-									<li className="third-playing-style bg-gray-200 rounded-lg py-1 px-2 sm:py-1.5 sm:px-3 md:py-2 md:px-4 lg:py-3 xl:py-4 flex items-center gap-1.5 lg:gap-3 [@media(max-height:800px)]:py-1.5 [@media(max-height:800px)]:px-3">
+									<li className="third-playing-style bg-gray-200 rounded-lg py-2 px-3 sm:py-2.5 sm:px-4 md:py-2.5 md:px-4 lg:py-2.5 lg:px-4 xl:py-2.5 xl:px-4 2xl:py-3 2xl:px-5 flex items-center gap-2 lg:gap-3">
 										<img
 											src="/images/racket.png"
 											alt="racket"
-											className="w-3 h-3 sm:w-4 sm:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 shrink-0"
+											className="w-4 h-4 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 xl:w-6 xl:h-6 2xl:w-7 2xl:h-7 [@media(max-height:1000px)]:w-4 [@media(max-height:1000px)]:h-4 [@media(max-height:850px)]:w-3.5 [@media(max-height:850px)]:h-3.5 shrink-0"
 										/>
 										<span className="leading-tight">
 											<span className="font-semibold whitespace-nowrap">
@@ -1075,38 +1090,38 @@ function MainContent() {
 									</li>
 								</ul>
 							</div>
-							<div className="flex flex-col h-auto shrink-0 justify-center mt-1 lg:mt-4 [@media(max-height:800px)]:mt-1">
+							<div className="flex flex-col h-auto shrink-0 justify-center">
 								<div className="text-mask overflow-hidden shrink-0">
-									<div className="third-ranking border-l-4 px-2 py-0 border-stone-700 text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl [@media(max-height:800px)]:text-lg anton-regular mb-1 sm:mb-2 md:mb-3 font-semibold">
+									<div className="third-ranking border-l-4 px-2 py-0 border-stone-700 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-2xl 2xl:text-3xl [@media(max-height:1000px)]:text-xl [@media(max-height:850px)]:text-lg [@media(max-height:700px)]:text-base anton-regular mb-1 sm:mb-2 md:mb-3 font-semibold">
 										Highest WR
 									</div>
 								</div>
-								<div className="third-ranking-no font-semibold text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl [@media(max-height:800px)]:text-4xl [@media(max-height:600px)]:text-3xl">
+								<div className="third-ranking-no font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[5rem] 2xl:text-[6rem] [@media(max-height:1000px)]:text-[4.5rem] [@media(max-height:850px)]:text-[3.5rem] [@media(max-height:700px)]:text-[3rem] leading-none">
 									# 1
 								</div>
 							</div>
-							<div className="third-stats flex flex-col justify-center h-auto shrink-0 mt-3 sm:mt-5 lg:mt-8 [@media(max-height:800px)]:mt-3">
-								<div className="text-mask overflow-hidden shrink-0 mb-2 sm:mb-3 md:mb-4 lg:mb-6 [@media(max-height:800px)]:mb-2">
-									<h2 className="third-stats-title border-l-4 px-2 py-0 border-stone-700 text-sm sm:text-base md:text-xl lg:text-2xl xl:text-3xl [@media(max-height:800px)]:text-lg anton-regular font-semibold">
+							<div className="third-stats flex flex-col justify-center h-auto shrink-0 mt-2 sm:mt-3 lg:mt-5 2xl:mt-6 [@media(max-height:1000px)]:mt-3 [@media(max-height:850px)]:mt-2">
+								<div className="text-mask overflow-hidden shrink-0 mb-2 sm:mb-2 md:mb-3 lg:mb-4 2xl:mb-5 [@media(max-height:1000px)]:mb-3 [@media(max-height:850px)]:mb-2">
+									<h2 className="third-stats-title border-l-4 px-2 py-0 border-stone-700 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-2xl 2xl:text-3xl [@media(max-height:1000px)]:text-xl [@media(max-height:850px)]:text-lg [@media(max-height:700px)]:text-base anton-regular font-semibold">
 										STATS
 									</h2>
 								</div>
-								<ul className="flex flex-col gap-2 sm:gap-3 md:gap-4 lg:gap-5 xl:gap-6 h-auto [@media(max-height:800px)]:gap-2">
+								<ul className="flex flex-col gap-2 sm:gap-3 md:gap-3 lg:gap-3 xl:gap-4 2xl:gap-4 h-auto [@media(max-height:1000px)]:gap-2 [@media(max-height:850px)]:gap-1.5 [@media(max-height:700px)]:gap-1">
 									{trulsMoregardhStats.map((stats, i) => (
 										<li
 											key={i}
-											className="flex items-center gap-2 sm:gap-3 md:gap-4 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl [@media(max-height:800px)]:text-sm shrink-0"
+											className="flex items-center gap-2 sm:gap-3 md:gap-3 2xl:gap-4 text-sm sm:text-base md:text-base lg:text-lg xl:text-lg 2xl:text-xl [@media(max-height:1000px)]:text-base [@media(max-height:850px)]:text-sm [@media(max-height:700px)]:text-xs shrink-0"
 										>
-											<span className="w-16 sm:w-20 md:w-24 lg:w-32 xl:w-40 flex items-center gap-1 sm:gap-2 shrink-0">
+											<span className="w-16 sm:w-20 md:w-24 lg:w-32 xl:w-32 2xl:w-36 [@media(max-height:1000px)]:w-24 [@media(max-height:850px)]:w-20 [@media(max-height:700px)]:w-16 flex items-center gap-1.5 sm:gap-2 2xl:gap-2 shrink-0">
 												<img
 													src={stats.image}
 													alt="stat icon"
-													className="w-3 h-3 md:w-4 md:h-4 lg:w-5 lg:h-5 xl:w-6 xl:h-6 shrink-0"
+													className="w-3.5 h-3.5 md:w-5 md:h-5 lg:w-6 lg:h-6 xl:w-7 xl:h-7 2xl:w-8 2xl:h-8 [@media(max-height:1000px)]:w-5 [@media(max-height:1000px)]:h-5 [@media(max-height:850px)]:w-4 [@media(max-height:850px)]:h-4 shrink-0"
 												/>
 												<span className="font-semibold">{stats.title}</span>
 											</span>
 											<ProgressBar score={stats.score} />
-											<span className="w-12 sm:w-14 md:w-16 lg:w-20 xl:w-24 text-right">
+											<span className="w-12 sm:w-14 md:w-16 lg:w-20 xl:w-24 2xl:w-28 text-right">
 												{stats.score}/10
 											</span>
 										</li>

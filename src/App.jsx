@@ -1005,7 +1005,7 @@ function MainContent() {
 									</div>
 								</div>
 								<div className="second-ranking-no font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[5rem] 2xl:text-[6rem] [@media(max-height:1000px)]:text-[4.5rem] [@media(max-height:850px)]:text-[3.5rem] [@media(max-height:700px)]:text-[3rem] leading-none">
-									# 1
+									# 8
 								</div>
 							</div>
 							<div className="second-stats flex flex-col justify-center h-auto shrink-0 mt-2 sm:mt-3 lg:mt-5 2xl:mt-6 [@media(max-height:1000px)]:mt-3 [@media(max-height:850px)]:mt-2">
@@ -1116,7 +1116,7 @@ function MainContent() {
 									</div>
 								</div>
 								<div className="third-ranking-no font-semibold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[5rem] 2xl:text-[6rem] [@media(max-height:1000px)]:text-[4.5rem] [@media(max-height:850px)]:text-[3.5rem] [@media(max-height:700px)]:text-[3rem] leading-none">
-									# 1
+									# 2
 								</div>
 							</div>
 							<div className="third-stats flex flex-col justify-center h-auto shrink-0 mt-2 sm:mt-3 lg:mt-5 2xl:mt-6 [@media(max-height:1000px)]:mt-3 [@media(max-height:850px)]:mt-2">

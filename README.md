@@ -1,16 +1,17 @@
-# React + Vite
+# Ace of Blades
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is just a fun website about the three table tennis/ping pong players that I like. I was inspired by seeing all cool websites on awwwards, so I gave it a try. This website was built using gsap and react. Hope you like this project ♥. I found out that creating animations is much harder than it seems
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Cool animations
+- Somewhat responsive
 
-## React Compiler
+## Learnings
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- More familiarity with gsap
+- Better understanding of timelines in gsap
 
-## Expanding the ESLint configuration
+## Credits
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The main inspiration for animation and layout of is from https://www.agencefoudre.com website
